@@ -1,0 +1,79 @@
+
+<md-sidenav class="md-sidenav-left" id="sidebarLeft" md-component-id="left"
+  md-is-locked-open="$mdMedia('gt-md')">
+  <md-toolbar class="md-theme-light" ng-controller="LeftCtrl" hide-gt-md>
+    <div class="md-toolbar-tools">
+      <h3>
+        <span>Menú</span>
+      </h3>
+      <span flex></span>
+      <md-button aria-label="Cerrar" ng-click="close()" hide-gt-md>
+        <i class="fa fa-times"></i>
+      </md-button>
+    </div>
+  </md-toolbar>
+    <md-content id="sidebar">
+      <md-button class="md-default boton-menu" href="#/">
+        <i class="fa fa-tachometer"></i><br>Escritorio
+      </md-button>
+      <md-button class="md-default boton-menu" href="#/documentos">
+        <i class="fa fa-file-text-o"></i><br> Documentos
+      </md-button>
+      <md-button class="md-default boton-menu" href="#/etiquetas">
+        <i class="fa fa-tags"></i><br> Etiquetas
+      </md-button>
+      <md-button class="md-default boton-menu" href="#/favoritos">
+        <i class="fa fa-star"></i><br> Favoritos
+      </md-button>
+      <md-button ng-click="close()" class="md-default boton-menu" href="#/buscar">
+        <i class="fa fa-search"></i><br> Búsquedas
+      </md-button>
+    </md-content>
+  </md-sidenav>
+
+  <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+    <md-toolbar class="md-theme-light">
+      <div class="md-toolbar-tools">
+        <h3>
+          <span>Actividad</span>
+        </h3>
+        <span flex></span>
+        <md-button ng-click="toggleRight()" aria-label="Mostrar menú">
+          <i class="fa fa-times"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-content ng-controller="RightCtrl" layout-padding>
+      <div>
+        <md-content class="md-padding">
+          <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Documentos" >
+              <md-content class="md-padding">
+
+                <p class="lead">Documentos encontrados</p>
+                <ol id="BusquedaOCR"></ol>
+
+                <!-- <div ng-controller="DocumentSearchCtrl as SearchCtrl">
+                  <p class="lead">Documentos encontrados</p>
+                  {{encontrados}}
+                  {{SearchCtrl.encontrados}}
+                  <div ng-repeat="doc in SearchCtrl.encontrados">
+                    <a href="#/documento/{{::doc.id}}">{{::doc.name}}</a>
+                    <hr>
+                  </div>
+                </div> -->
+              </md-content>
+            </md-tab>
+            <md-tab label="two">
+              <md-content class="md-padding">
+                <h1 class="md-display-2">Tab Two</h1>
+
+                <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+              </md-content>
+            </md-tab>
+
+          </md-tabs>
+        </md-content>
+      </div>
+    </md-content>
+  </md-sidenav>

@@ -1,0 +1,10 @@
+{
+  "name"        : "Instituto de créditos",
+  "script"      : "cluster.js",
+  "log_date_format"  : "YYYY-MM-DD HH:mm Z",
+  "ignoreWatch" : [ "node_modules","public"],
+  "watch"       : false,
+  "env": {
+        "NODE_ENV": "production"
+    }
+}

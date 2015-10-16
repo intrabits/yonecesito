@@ -1,0 +1,36 @@
+
+
+  <section class="panel panel-default table-dynamic">
+    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Archivos</strong>
+    </div>
+
+    <div class="panel-body">
+
+      <br>
+      <table datatable="ng" class="table table-striped" ng-show="archivos.length>0">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>
+              Liga
+            </th>
+            <th class="hidden-xs">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="archivo in archivos" dt-rows="" id="a{{archivo.id}}" >
+          <td>{{ ::archivo.nombre }}</td>
+          <td>{{ ::archivo.createdAt |date:'yyyy/MM/dd' }}</td>
+          <td><a class="btn btn-info" href="/api/archivos/{{::archivo.id}}" target="_blank">Descargar</a></td>
+          <td class="hidden-xs">
+            <a href="javascript:;" ng-click="deleteArchivo(archivo.id)" class="btn btn-danger btn-sm">
+              <i class="fa fa-trash-o"></i> </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+
+</div>
+</section>

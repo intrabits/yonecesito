@@ -1,0 +1,56 @@
+{
+  "name": "YoNecesito",
+  "version": "0.0.1",
+  "description": "Publica tus necesidades para que otros usuarios busquen su solución :)",
+  "repository": "git@bitbucket.org:cedric_luckie/paramo.git",
+  "dependencies": {
+    "accounting": "^0.4.1",
+    "async": "^0.9.0",
+    "babel": "^5.8.23",
+    "bcryptjs": "^2.3.0",
+    "bluebird": "^2.9.6",
+    "body-parser": "~1.0.0",
+    "colors": "^1.0.3",
+    "connect-busboy": "0.0.1",
+    "cookie-parser": "~1.0.1",
+    "debug": "^2.2.0",
+    "ejs": "^1.0.0",
+    "express": "4.x",
+    "express-mysql-session": "^0.3.1",
+    "express-session": "~1.0.0",
+    "lodash": "^3.10.1",
+    "method-override": "~1.0.0",
+    "moment": "^2.9.0",
+    "multer": "^1.0.3",
+    "mysql": "^2.3.0",
+    "nark": "0.1.1",
+    "passport": "^0.2.1",
+    "passport-facebook": "^1.0.3",
+    "passport-local": "^1.0.0",
+    "password-generator": "^0.2.2",
+    "sanitizer": "^0.1.2",
+    "sequelize": "^3.5.1",
+    "shortid": "^2.0.0",
+    "validator": "^3.22.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.9.11",
+    "chai": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "latest",
+    "gulp-jshint": "latest",
+    "gulp-nodemon": "^2.0.2",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-stylus": "^2.0.6",
+    "gulp-uglify": "latest",
+    "gulp-watch": "latest",
+    "mocha": "^2.2.1",
+    "supertest": "^0.15.0"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "scripts": {
+    "dev": "gulp"
+  }
+}

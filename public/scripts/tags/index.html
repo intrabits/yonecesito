@@ -1,0 +1,64 @@
+<div class="well">
+  <h2><i class="fa fa-tags"></i>
+    Etiquetas <small>Actualmente hay {{::TagsCtrl.tags.length}} tags</small>
+  </h2>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <input
+        placeholder="Buscar etiqueta"
+        type="text"
+        class="form-control"
+        ng-model="searchTag">
+    </div>
+    <div class="col-md-6">
+      <h3></h3>
+    </div>
+  </div>
+
+
+  <hr>
+  <div class="btn group" ng-repeat="tag in TagsCtrl.tags | filter:searchTag">
+
+    <md-checkbox ng-model="TagsCtrl.selectTags[tag]"> .
+      <a
+        class="btn btn-default"
+        href="#/etiqueta/{{::tag}}">{{::tag}}</a>
+    </md-checkbox>
+
+
+  </div>
+  <hr>
+  <md-button
+    class="md-raised md-primary"
+    ng-click="TagsCtrl.busarDocumentos()">
+    Buscar documentos</md-button>
+  <hr>
+
+</div>
+
+<div class="well" ng-if="TagsCtrl.documents.length>0">
+
+  <h3>Se encontraron {{TagsCtrl.documents.length}} documentos</h3>
+  <hr>
+  <md-grid-list
+      md-cols-sm="1" md-cols-md="3" md-cols-gt-md="6"
+      md-row-height-gt-md="1:1" md-row-height="2:2"
+      md-gutter="12px" md-gutter-gt-sm="8px" >
+      <md-grid-tile ng-repeat="document in TagsCtrl.documents">
+        <a href="#/documento/{{::document.id}}">
+          <img ng-src="/api/documents/{{::document.id}}/thumb" alt="" class="document" />
+        </a>
+
+        <md-grid-tile-footer style="background:rgba(0,0,0,.6)">
+          <!-- <button type="button" class="btn btn-default pull-right">
+            <i class="fa fa-tags"></i>
+          </button> -->
+          <h3>
+            {{::document.name}}
+          </h3>
+        </md-grid-tile-footer>
+      </md-grid-tile>
+
+  </md-grid-list>
+</div>
