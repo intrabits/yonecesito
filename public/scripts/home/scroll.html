@@ -1,0 +1,101 @@
+
+<div ui-content-for="title">
+  <span>Inicio</span>
+</div>
+
+<div class="scrollable">
+  <div class="scrollable-content"  ui-scroll-bottom='bottomReached()'>
+    <div class="section">
+
+      <!-- Publicar necesidad -->
+      <div class="panel panel-default" ng-controller="NuevaNecesidadCtrl as NuevaNecesidadCtrl">
+        <div class="panel-body">
+          <textarea
+              rows="3"
+              placeholder="Yo necesito..."
+              ng-model="NuevaNecesidadCtrl.NecesidadForm.titulo"
+              class="form-control"></textarea>
+        </div>
+        <div class="panel-footer" ng-if="NuevaNecesidadCtrl.NecesidadForm.titulo.length>0">
+          <button class="btn btn-primary pull-right" ng-click="NuevaNecesidadCtrl.create()">
+            <i class="fa fa-save"></i> Guardar
+          </button>
+          <select
+            class="form-control pull-right"
+            style="width:300px;"
+            ng-model="NuevaNecesidadCtrl.NecesidadForm.categoriaId">
+            <option value="1">Productos</option>
+            <option value="2">Servicios</option>
+            <option value="3">Otro</option>
+          </select>
+          <p class="pull-right">Categoría : </p>
+          <p>Quedan: {{150 - NuevaNecesidadCtrl.NecesidadForm.titulo.length}} caracteres</p>
+        </div>
+      </div>
+
+
+      <div class="panel panel-default" ng-repeat="necesidad in HomeCtrl.necesidades">
+        <div class="panel-heading">
+          <div class="btn-group pull-right">
+            <a ui-turn-on='myDropdown{{idx}}' class='btn'>
+              <i class="fa fa-ellipsis-v"></i>
+            </a>
+            <ul
+              ui-state="myDropdown{{idx}}"
+
+              class="dropdown-menu"
+              ui-outer-click="Ui.turnOff('myDropdown' + idx)"
+              ui-outer-click-if="Ui.active('myDropdown' + idx)"
+              role="menu"
+              ui-show="myDropdown{{idx}}"
+              ui-turn-off="myDropdown{{idx}}">
+
+              <li><a>Action</a></li>
+              <li><a>Another action</a></li>
+              <li><a>Something else here</a></li>
+              <li class="divider"></li>
+              <li><a>Separated link</a></li>
+            </ul>
+          </div>
+          <h3 class="panel-title">{{necesidad.createdAt|date:'dd/MM/yyyy'}}</h3>
+        </div>
+        <div class="panel-body">
+          <a ng-href="#/necesidad/{{necesidad.id}}" style=" display: block; text-decoration:none ">
+            {{necesidad.titulo}}
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- <div ui-content-for="title">
+  <span>Scroll</span>
+</div>
+
+<div class="scrollable" ui-state="searchBar" ng-controller="NecesidadesCtrl">
+  <input
+    ng-if="Ui.active('searchBar')"
+    type="search"
+    class="form-control scrollable-header"
+    placeholder="Search.." />
+
+  <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
+    <div class="list-group">
+      <a ng-repeat="necesidad in NecesidadesCtrl.necesidades" href="" class="list-group-item">
+        {{necesidad.titulo}}
+      </a>
+      <a ng-repeat="item in scrollItems" href="#" class="list-group-item">
+        {{ item }} <i class="fa fa-chevron-right pull-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <a class="btn btn-block btn-lg btn-primary scrollable-footer" ui-toggle='searchBar'>
+    <i class="fa fa-search"></i>
+    <span ui-hide="searchBar">Show</span>
+    <span ui-show="searchBar">Hide</span>
+    Search Bar
+  </a>
+</div> -->

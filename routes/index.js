@@ -11,7 +11,11 @@ var async   = require('async');
 //  Modelos
 var User    = require('./../api/user/user.model.js');
 
-router.get('/', auth.ensureAuthenticated, function(req, res){
+router.get('/',function (req,res) {
+  res.render('index');
+});
+
+router.get('/app', auth.ensureAuthenticated, function(req, res){
   res.render('app');
 });
 

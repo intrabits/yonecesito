@@ -1,9 +1,9 @@
 (function () {
   'use strict';
   angular
-    .module('app.users.service',  ['restangular'])
+    .module('app.users.service',  [])
 
-      .factory ('User', ['Restangular',function (Restangular) {
+      .factory ('User', ['$http',function ($http) {
 
         return {
           all:Restangular.all('api/users'),

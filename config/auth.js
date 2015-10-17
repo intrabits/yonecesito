@@ -131,7 +131,7 @@ function ensureAuthenticated(req, res, next) {
 exports.isLogged = function(req,res,next) {
   if (req.isAuthenticated()) { return next(); }
   else{
-    res.status(401).send('Permiso denegado');
+    res.status(401).send('Primero debes de iniciar sesión!');
   }
 };
 

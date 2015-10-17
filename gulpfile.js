@@ -1,9 +1,10 @@
 var gulp = require('gulp'),
   concat = require('gulp-concat'),
-  uglify = require('gulp-uglify');
+  uglify = require('gulp-uglify'),
   watch = require('gulp-watch'),
   nodemon = require('gulp-nodemon'),
   sourcemaps = require('gulp-sourcemaps'),
+  ngAnnotate = require('gulp-ng-annotate'),
   browserSync = require('browser-sync');
 
 var config = require('./config/config.json');
@@ -13,7 +14,7 @@ gulp.task('default', function () {
     script: 'app.js',
     ext: 'js ejs',
     ignore: ['public'],
-    env: { 'NODE_ENV': 'production' }
+    env: { 'NODE_ENV': 'dev' }
   });
   var files = [
     'public/css/*.css',
@@ -28,6 +29,7 @@ gulp.task('default', function () {
       'public/scripts/app.js',
       'public/scripts/**/*.js',
       ],{base: 'public/scripts/'})
+    // .pipe(ngAnnotate())
     .pipe(sourcemaps.init())
     .pipe(concat('build.js'))
     .pipe(uglify())

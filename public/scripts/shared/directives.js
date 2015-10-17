@@ -123,7 +123,7 @@ angular.module('app.directives', [])
           // again, and the 2nd time, the value will be undefined
           if (inputValue === undefined) return '';
           var transformedInput = inputValue.replace(/[^0-9+.]/g, '');
-          if (transformedInput!=inputValue) {
+          if (transformedInput!==inputValue) {
             modelCtrl.$setViewValue(transformedInput);
             modelCtrl.$render();
           }
