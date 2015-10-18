@@ -32,18 +32,18 @@
       <div class="panel panel-default" ng-repeat="necesidad in HomeCtrl.necesidades">
         <div class="panel-heading">
           <div class="btn-group pull-right">
-            <a ui-turn-on='myDropdown{{idx}}' class='btn'>
+            <a ui-turn-on='myDropdown{{necesidad.id}}' class='btn'>
               <i class="fa fa-ellipsis-v"></i>
             </a>
             <ul
-              ui-state="myDropdown{{idx}}"
+              ui-state="myDropdown{{necesidad.id}}"
 
               class="dropdown-menu"
-              ui-outer-click="Ui.turnOff('myDropdown' + idx)"
-              ui-outer-click-if="Ui.active('myDropdown' + idx)"
+              ui-outer-click="Ui.turnOff('myDropdown' + necesidad.id)"
+              ui-outer-click-if="Ui.active('myDropdown' + necesidad.id)"
               role="menu"
-              ui-show="myDropdown{{idx}}"
-              ui-turn-off="myDropdown{{idx}}">
+              ui-show="myDropdown{{necesidad.id}}"
+              ui-turn-off="myDropdown{{necesidad.id}}">
 
               <li><a>Action</a></li>
               <li><a>Another action</a></li>

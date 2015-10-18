@@ -5,7 +5,8 @@
       'app.necesidad.service',
       'app.necesidad.nueva',
       'app.necesidad.detalle',
-      'app.necesidad.categoria'
+      'app.necesidad.categoria',
+      'app.comentario.service'
     ])
       .controller('NecesidadesCtrl',['Necesidad','ngNotify',function (Necesidad,ngNotify) {
 

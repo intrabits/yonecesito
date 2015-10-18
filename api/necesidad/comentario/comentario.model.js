@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var sequelize = require('./../../config').sequelize;
+var sequelize = require('./../../../config').sequelize;
 
 var Comentario = sequelize.define('comentario', {
 

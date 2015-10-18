@@ -1,6 +1,7 @@
 var Necesidad = require('./necesidad.model');
 var User = require('./../user/user.model');
 var Categoria = require('./categoria/categoria.model');
+var Comentario = require('./comentario/comentario.model');
 var colors = require('colors');
 
 exports.load = function (req,res) {
@@ -95,6 +96,13 @@ exports.show = function (req,res) {
       return User.findById(data.userId)
         .then(function (user) {
           data.user = user;
+          return data;
+        });
+    })
+    .then(function (data) {
+      return Comentario.findAll({where:{necesidadId:data.id}})
+        .then(function (comentarios) {
+          data.comentarios = comentarios;
           return data;
         });
     })

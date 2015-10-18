@@ -1,6 +1,6 @@
 var express = require('express');
 var NecesidadCtrl = require('./necesidad.controller');
-var ComentarioCtrl = require('./comentario.controller');
+var ComentarioCtrl = require('./comentario/comentario.controller');
 var auth = require('./../../config/auth');
 var router = express.Router();
 

@@ -9,6 +9,7 @@
   "newcap": true,
   "noarg": true,
   "undef": true,
+  "predef": ["angular"],
   "smarttabs": true,
   "asi": true,
   "debug": true

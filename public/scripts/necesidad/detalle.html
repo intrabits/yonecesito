@@ -2,29 +2,30 @@
   <span><a href="#/">Inicio</a> > <a href="#/categoria/{{DetalleCtrl.necesidad.categoria.clave}}">{{DetalleCtrl.necesidad.categoria.titulo}}</a></span>
 </div>
 
-<div class="scrollable" ng-if="DetalleCtrl.necesidad" style="background-color:#fff">
+<div class="scrollable section" ng-if="DetalleCtrl.necesidad" >
   <div class="scrollable-content">
 
     <div class="list-group text-center">
       <div class="list-group-item list-group-item-home">
         <h1>
           {{DetalleCtrl.necesidad.titulo}}
-          <small>{{DetalleCtrl.necesidad.user.name}}</small>
+          <!-- <small>{{DetalleCtrl.necesidad.user.name}}</small> -->
         </h1>
-      </div>
-      <div class="row list-group-item-home">
-        <div class="col-md-4" ng-if="DetalleCtrl.necesidad.createdAt">
-          <strong>Fecha:</strong> {{DetalleCtrl.necesidad.createdAt|date:'dd/MM/yyyy'}}
-        </div>
-        <div class="col-md-4">
-          <strong>Usuario:</strong> {{DetalleCtrl.necesidad.user.name}}
-        </div>
-        <div class="col-md-4">
-          <div ng-if="app.user.id == DetalleCtrl.necesidad.userId">
-            <a href="#/necesidad/{{::DetalleCtrl.necesidad.id}}/editar" class="btn btn-default"><i class="fa fa-edit"></i> Editar necesidad</a>
+        <div class="row">
+          <div class="col-md-4" ng-if="DetalleCtrl.necesidad.createdAt">
+            <strong>Fecha:</strong> {{DetalleCtrl.necesidad.createdAt|date:'dd/MM/yyyy'}}
+          </div>
+          <div class="col-md-4">
+            <strong>Usuario:</strong> {{DetalleCtrl.necesidad.user.name}}
+          </div>
+          <div class="col-md-4">
+            <div ng-if="app.user.id == DetalleCtrl.necesidad.userId">
+              <a href="#/necesidad/{{::DetalleCtrl.necesidad.id}}/editar" class="btn btn-default"><i class="fa fa-edit"></i> Editar necesidad</a>
+            </div>
           </div>
         </div>
       </div>
+      <br>
       <div class="list-group-item list-group-item-home">
         <div>
             <strong>Información adicional:</strong>
@@ -35,6 +36,57 @@
       </div>
 
 
+    </div>
+
+
+    <!-- Publicar comentario -->
+    <div class="panel panel-default" ng-controller="NuevaNecesidadCtrl as NuevaNecesidadCtrl">
+      <div class="panel-body">
+        <h2 align="center">Comentarios</h2>
+        <textarea
+            rows="3"
+            placeholder="Deja un comentario / Ofrece una solución / Recomienda a alguien"
+            ng-model="DetalleCtrl.ComentarioForm.texto"
+            class="form-control"></textarea>
+      </div>
+      <div class="panel-footer" ng-if="DetalleCtrl.ComentarioForm.texto.length>0">
+
+        <button class="btn btn-primary pull-right" ng-click="DetalleCtrl.comentar()">
+          <i class="fa fa-save"></i> Enviar comentario
+        </button>
+        <br>
+        <br>
+
+      </div>
+    </div>
+
+    <!-- Comentarios -->
+    <div class="panel panel-default" ng-repeat="comentario in DetalleCtrl.necesidad.comentarios">
+      <div class="panel-heading">
+        <div class="btn-group pull-right">
+          <a ui-turn-on='myDropdown{{comentario.id}}' class='btn'>
+            <i class="fa fa-ellipsis-v"></i>
+          </a>
+          <ul
+            ui-state="myDropdown{{comentario.id}}"
+            class="dropdown-menu"
+            ui-outer-click="Ui.turnOff('myDropdown' + comentario.id)"
+            ui-outer-click-if="Ui.active('myDropdown' + comentario.id)"
+            role="menu"
+            ui-show="myDropdown{{comentario.id}}"
+            ui-turn-off="myDropdown{{comentario.id}}">
+
+            <li><a>Action</a></li>
+            <li><a>Another action</a></li>
+          </ul>
+        </div>
+        <h3 class="panel-title">{{comentario.createdAt|date:'dd/MM/yyyy'}}</h3>
+      </div>
+      <div class="panel-body">
+        <a ng-href="#/necesidad/{{necesidad.id}}" style=" display: block; text-decoration:none ">
+          {{comentario.texto}}
+        </a>
+      </div>
     </div>
 
   </div>
