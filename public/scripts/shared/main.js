@@ -5,9 +5,17 @@
       'app.directives',
       'app.filters'
     ])
-    .controller('MainController',['$rootScope','$scope', function($rootScope, $scope){
+    .controller('MainController',['$rootScope','$scope','User', function($rootScope, $scope, User){
 
+      var vm = this;
 
+      User.me()
+        .success(function (data) {
+          vm.user = data;
+        })
+        .error(function (err) {
+          console.log(err);
+        });
 
       // User agent displayed in home page
       $scope.userAgent = navigator.userAgent;

@@ -1,0 +1,72 @@
+<div ui-content-for="title">
+  <span><a href="#/">Inicio</a> > <a href="#/categoria/{{DetalleCtrl.necesidad.categoria.clave}}">{{DetalleCtrl.necesidad.categoria.titulo}}</a></span>
+</div>
+
+<div class="scrollable" ng-if="DetalleCtrl.necesidad">
+  <div class="scrollable-content">
+
+    <div class="list-group text-center">
+      <div class="list-group-item list-group-item-home">
+        <h1>
+          Editar necesidad
+        </h1>
+      </div>
+      <div class="list-group-item list-group-item-home">
+        <form ng-submit="DetalleCtrl.save()">
+          <div class="row">
+            <div class="col-md-4">Título:</div>
+            <div class="col-md-5">
+              <input type="text" class="form-control" ng-model="DetalleCtrl.necesidad.titulo">
+              <p class="help-block">Texto que les aparecerá a todos los usuarios en la página de inicio, se recomienda iniciar con "Yo necesito...".</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">Descripción</div>
+            <div class="col-md-5">
+              <textarea class="form-control" rows="4" ng-model="DetalleCtrl.necesidad.descripcion"></textarea>
+              <p class="help-block">
+                Describe detalladamente lo que necesitas
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">Categoría</div>
+            <div class="col-md-5">
+              <select
+                class="form-control"
+                ng-model="DetalleCtrl.necesidad.categoriaId">
+                <option value="1" ng-selected="DetalleCtrl.necesidad.categoriaId==1">
+                  Productos</option>
+                <option value="2" ng-selected="DetalleCtrl.necesidad.categoriaId==2">
+                  Servicios</option>
+                <option value="3" ng-selected="DetalleCtrl.necesidad.categoriaId==3">
+                  Otro</option>
+              </select>
+              <p class="help-block">Sección en la que aparecerá tu necesidad</p>
+            </div>
+          </div>
+
+          <hr>
+
+          <button class="btn btn-primary" type="submit" ng-click="DetalleCtrl.save()">
+            <i class="fa fa-save"></i> Guardar cambios
+          </button>
+          <a class="btn btn-default" onclick="window.history.back();">
+            Cancelar
+          </a>
+
+          <a class="btn btn-danger pull-right"  ng-click="DetalleCtrl.delete()">
+            <i class="fa fa-trash-o"></i> Eliminar
+          </a>
+
+
+
+
+        </form>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

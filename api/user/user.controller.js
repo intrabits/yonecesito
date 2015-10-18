@@ -32,9 +32,7 @@ exports.create = function (req, res, next) {
   });
 };
 
-exports.update = function  (req,res) {
-
-  var current;
+exports.update = function  (req,res) {  
 
   User.find(req.user.id)
     .then(function  (u) {
@@ -102,7 +100,7 @@ exports.me = function(req, res, next) {
     surname : req.user.surname,
     email: req.user.email
   };
-  console.log(profile);
+
   res.json(profile);
 
   // User

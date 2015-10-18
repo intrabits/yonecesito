@@ -2,7 +2,7 @@
   <span><a href="#/">Inicio</a> > <a href="#/categoria/{{DetalleCtrl.necesidad.categoria.clave}}">{{DetalleCtrl.necesidad.categoria.titulo}}</a></span>
 </div>
 
-<div class="scrollable">
+<div class="scrollable" ng-if="DetalleCtrl.necesidad" style="background-color:#fff">
   <div class="scrollable-content">
 
     <div class="list-group text-center">
@@ -12,18 +12,21 @@
           <small>{{DetalleCtrl.necesidad.user.name}}</small>
         </h1>
       </div>
-      <div class="row">
-        <div class="col-md-4">
+      <div class="row list-group-item-home">
+        <div class="col-md-4" ng-if="DetalleCtrl.necesidad.createdAt">
           <strong>Fecha:</strong> {{DetalleCtrl.necesidad.createdAt|date:'dd/MM/yyyy'}}
         </div>
         <div class="col-md-4">
-          <strong>Fecha:</strong> {{DetalleCtrl.necesidad.createdAt|date:'dd/MM/yyyy'}}
+          <strong>Usuario:</strong> {{DetalleCtrl.necesidad.user.name}}
+        </div>
+        <div class="col-md-4">
+          <div ng-if="app.user.id == DetalleCtrl.necesidad.userId">
+            <a href="#/necesidad/{{::DetalleCtrl.necesidad.id}}/editar" class="btn btn-default"><i class="fa fa-edit"></i> Editar necesidad</a>
+          </div>
         </div>
       </div>
       <div class="list-group-item list-group-item-home">
         <div>
-            <h3 class="home-heading">{{DetalleCtrl.necesidad.titulo}}</h3>
-            <h4>{{DetalleCtrl.necesidad.createdAt|date:'dd/MM/yyyy'}}</h4>
             <strong>Información adicional:</strong>
             <p>
               {{DetalleCtrl.necesidad.descripcion}}

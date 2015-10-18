@@ -1,14 +1,13 @@
 (function () {
   'use strict';
   angular
-    .module('app.users.service',  [])
+    .module('app.user.service',  [])
 
       .factory ('User', ['$http',function ($http) {
 
         return {
-          all:Restangular.all('api/users'),
-          one:function  (id) {
-            return Restangular.one('api/users',id);
+          me:function () {
+            return $http.get('/api/users/profile');
           }
         };
       }]);

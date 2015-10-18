@@ -8,6 +8,7 @@
       'app.main',
       'app.home',
       'ngNotify',
+      'app.user',
       'app.necesidad',
       // touch/drag feature: this is from 'mobile-angular-ui.gestures.js'
       // it is at a very beginning stage, so please be careful if you like to use
@@ -34,7 +35,11 @@
         })
         .when('/necesidad/:id', {
           templateUrl: 'scripts/necesidad/detalle.html',
-          reloadOnSearch: false,
+          controller:'NecesidadDetalleCtrl',
+          controllerAs:'DetalleCtrl'
+        })
+        .when('/necesidad/:id/editar', {
+          templateUrl: 'scripts/necesidad/editar.html',
           controller:'NecesidadDetalleCtrl',
           controllerAs:'DetalleCtrl'
         })
@@ -238,7 +243,7 @@
     //
     //   $scope.login = function() {
     //     alert('You submitted the login form');
-    //   };    
+    //   };
     //   //
     //   // 'Drag' screen
     //   //

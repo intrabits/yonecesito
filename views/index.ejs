@@ -28,7 +28,7 @@
 
   <body
     ng-app="app"
-    ng-controller="MainController"
+    ng-controller="MainController as app"
     ui-prevent-touchmove-defaults
     >
 
@@ -93,6 +93,6 @@
     <div ui-content-for="modals">
       <div ng-include="'scripts/shared/login.html'"></div>
     </div>
-
+  <script src="//cdnjs.cloudflare.com/ajax/libs/textAngular/1.4.6/textAngular.min.js"></script>
   </body>
 </html>

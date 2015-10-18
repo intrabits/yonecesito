@@ -52,6 +52,34 @@ exports.create = function (req,res) {
 
 };
 
+exports.update = function (req,res) {
+
+  if (!req.body.categoriaId) {
+    req.body.categoriaId = 3;  // si no tiene una categoría entonces lo mandamos a "otros"
+  }
+
+  console.log(req.user.name, ' está actualizando una necesidad'.yellow);
+  Necesidad.findOne({where:{
+    id:req.params.id,
+    userId:req.user.id  // comprobamos que sea el dueño :)
+  }})
+    .then(function (data) {
+
+      data.titulo = req.body.titulo;
+      data.categoriaId = req.body.categoriaId;
+      data.descripcion = req.body.descripcion;
+      return data.save()
+    })
+    .then(function (data) {
+      res.send('Necesidad actualizada correctamente');
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.status(500).send('Error al actualizar la necesidad :/');
+    })
+
+};
+
 exports.show = function (req,res) {
 
   Necesidad.findById(req.params.id)
@@ -79,3 +107,18 @@ exports.show = function (req,res) {
     });
 
 };
+
+exports.delete = function (req,res) {
+
+
+  Necesidad.destroy({where:{id:req.params.id,userId:req.user.id}})
+    .then(function (data) {
+      console.log('Eliminando necesidad'.yellow);
+      res.send('Necesidad eliminada correctamente');
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.status(500).send('Error al eliminar la necesidad');
+    });
+
+}

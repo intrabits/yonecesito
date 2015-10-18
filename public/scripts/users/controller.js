@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  angular.module('app.users', ['app.users.service'])
+  angular.module('app.user', ['app.user.service'])
     .controller('UserCtrl',['$scope','User',function($scope,User){
 
       User.one('profile').get()
