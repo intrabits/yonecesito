@@ -8,7 +8,24 @@ h1 {
   padding: 0;
   margin: 10px 0;
 }
-
+.logo{
+  padding:15px;
+}
+.facebook{
+  background-color:#0101DF!important;
+  color:#fff!important;
+}
+.twitter{
+  background-color:#2ECCFA!important;
+  color:#fff!important;
+}
+.google{
+  background-color:#FF0000!important;
+  color:#fff!important;
+}
+.section{
+  background-color: #dfdfdf;
+}
 .chat-user-avatar {
   font-size: 40px;
   background: #ccc;
@@ -109,7 +126,7 @@ h1 {
 }
 
 [drag-to-dismiss]{
-  transform: translate(0,0); /* NOTE: this is required to prevent mobile webkit issues */ 
+  transform: translate(0,0); /* NOTE: this is required to prevent mobile webkit issues */
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -142,7 +159,7 @@ h1 {
 }
 
 .list-group-item-home {
-  padding: 20px; 
+  padding: 20px;
 }
 
 pre {

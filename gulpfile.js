@@ -33,6 +33,9 @@ gulp.task('default', function () {
     .pipe(sourcemaps.init())
     .pipe(concat('build.js'))
     .pipe(uglify())
+    .on('error',function (err) {
+      console.log('Opsie');
+    })
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/js/'));
   });

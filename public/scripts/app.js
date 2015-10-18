@@ -32,6 +32,18 @@
           controller:'HomeCtrl',
           controllerAs:'HomeCtrl'
         })
+        .when('/necesidad/:id', {
+          templateUrl: 'scripts/necesidad/detalle.html',
+          reloadOnSearch: false,
+          controller:'NecesidadDetalleCtrl',
+          controllerAs:'DetalleCtrl'
+        })
+        .when('/categoria/:categoria', {
+          templateUrl: 'scripts/necesidad/categoria.html',
+          reloadOnSearch: false,
+          controller:'CategoriaCtrl',
+          controllerAs:'CategoriaCtrl'
+        })
 
         .otherwise({
           redirectTo: '/'
@@ -226,8 +238,7 @@
     //
     //   $scope.login = function() {
     //     alert('You submitted the login form');
-    //   };
-    //
+    //   };    
     //   //
     //   // 'Drag' screen
     //   //

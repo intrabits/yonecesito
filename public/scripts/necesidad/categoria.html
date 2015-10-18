@@ -1,6 +1,6 @@
 
 <div ui-content-for="title">
-  <span>Inicio</span>
+  <span>Categoria > {{CategoriaCtrl.categoria.titulo}}</span>
 </div>
 
 <div class="scrollable">
@@ -34,7 +34,7 @@
       </div>
 
 
-      <div class="panel panel-default" ng-repeat="necesidad in HomeCtrl.necesidades">
+      <div class="panel panel-default" ng-repeat="necesidad in CategoriaCtrl.necesidades">
         <div class="panel-heading">
           <div class="btn-group pull-right">
             <a ui-turn-on='myDropdown{{idx}}' class='btn'>

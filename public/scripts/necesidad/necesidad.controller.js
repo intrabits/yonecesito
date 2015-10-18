@@ -3,7 +3,9 @@
   angular
     .module('app.necesidad',[
       'app.necesidad.service',
-      'app.necesidad.nueva'
+      'app.necesidad.nueva',
+      'app.necesidad.detalle',
+      'app.necesidad.categoria'
     ])
       .controller('NecesidadesCtrl',['Necesidad','ngNotify',function (Necesidad,ngNotify) {
 
@@ -16,7 +18,6 @@
           .error(function (err) {
             ngNotify.set(err, 'error');
           });
-
 
       }]);
 })();
