@@ -62,7 +62,10 @@
           controllerAs:'UserCtrl'
         })
         .when('/contacto', {
-          templateUrl: 'scripts/shared/contacto.html'          
+          templateUrl: 'scripts/shared/contacto.html'
+        })
+        .when('/privacidad', {
+          templateUrl: 'scripts/shared/privacidad.html'          
         })
         .otherwise({
           redirectTo: '/'
