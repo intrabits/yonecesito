@@ -1,5 +1,5 @@
 {
-  "name"        : "Instituto de créditos",
+  "name"        : "YoNecesito",
   "script"      : "cluster.js",
   "log_date_format"  : "YYYY-MM-DD HH:mm Z",
   "ignoreWatch" : [ "node_modules","public"],
