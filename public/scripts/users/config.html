@@ -1,0 +1,96 @@
+<!-- <div ui-content-for="title">
+  <span><a href="#/">Inicio</a> > <a href="#/categoria/{{DetalleCtrl.necesidad.categoria.clave}}">{{DetalleCtrl.necesidad.categoria.titulo}}</a></span>
+</div> -->
+
+<div class="scrollable" >
+  <div class="scrollable-content">
+
+    <div class="list-group text-center">
+      <div class="list-group-item list-group-item-home">
+        <h1>
+          Configuración de usuario
+        </h1>
+      </div>
+      <div class="list-group-item list-group-item-home">
+        <form ng-submit="DetalleCtrl.save()">
+          <div class="row">
+            <div class="col-md-4">Nombre:</div>
+            <div class="col-md-5">
+              <input type="text" class="form-control" ng-model="ConfigCtrl.user.name">
+              <p class="help-block">Nombre de usuario que será visible para las demás personas de la comunidad.</p>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4">Correo:</div>
+            <div class="col-md-5">
+              <input type="text" class="form-control" ng-model="ConfigCtrl.user.email">
+              <p class="help-block">Tu correo no será publicado ni será visible para otros usuarios.</p>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4">Tipo de usuario:</div>
+            <div class="col-md-5">
+              <label for="usuarioR" class="btn btn-default btn-lg">
+                <input type="radio" id="usuarioR" ng-model="ConfigCtrl.user.type" value="usuario">
+                Usuario
+              </label>
+              <label for="empresaR" class="btn btn-default btn-lg">
+                <input type="radio" id="empresaR" ng-model="ConfigCtrl.user.type" value="empresa">
+                Empresa
+              </label>
+              <p class="help-block">
+                <span ng-if="ConfigCtrl.user.type=='usuario'">Elige esta opción si quieres publicar necesidades, toda tu información de contacto será privada</span>
+                <span ng-if="ConfigCtrl.user.type=='empresa'">Elige esta opción si quieres que otros usuarios puedan ver tu teléfono y sitio web para ponerse en contacto contigo</span>
+              </p>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4">Descripción</div>
+            <div class="col-md-5">
+              <textarea class="form-control" rows="4" ng-model="ConfigCtrl.user.details"></textarea>
+              <p class="help-block">
+                Agrega información adicional sobre tu negocio
+              </p>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4">Teléfono</div>
+            <div class="col-md-5">
+              <input type="text" class="form-control" ng-model="ConfigCtrl.user.phone">            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4">Website</div>
+            <div class="col-md-5">
+              <input type="text" class="form-control" ng-model="ConfigCtrl.user.website">
+            </div>
+          </div>
+
+          <hr>
+
+          <button class="btn btn-primary" type="submit" ng-click="ConfigCtrl.save()">
+            <i class="fa fa-save"></i> Guardar cambios
+          </button>
+          <a class="btn btn-default" onclick="window.history.back();">
+            Cancelar
+          </a>
+
+          <!-- <a class="btn btn-danger pull-right"  ng-click="ConfigCtrl.delete()">
+            <i class="fa fa-trash-o"></i> Eliminar
+          </a> -->
+
+
+
+
+        </form>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div ui-content-for="title">
+  <span>
+    {{UserCtrl.user.name}}
+  </span>
+</div>
+
+<div class="scrollable section" >
+  <div class="scrollable-content">
+
+    <div class="list-group text-center">
+      <div class="list-group-item list-group-item-home">
+        <h1>
+          {{UserCtrl.user.name}}
+          <!-- <small>{{DetalleCtrl.necesidad.user.name}}</small> -->
+        </h1>
+        <div class="row">
+          <div class="col-md-4" ng-if="DetalleCtrl.necesidad.createdAt">
+            <strong>Fecha:</strong> {{UserCtrl.user.createdAt|date:'dd/MM/yyyy'}}
+          </div>
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-4">
+
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="list-group-item list-group-item-home">
+        <div>
+            <strong>Información adicional:</strong>
+            <p>
+              {{DetalleCtrl.necesidad.descripcion}}
+            </p>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

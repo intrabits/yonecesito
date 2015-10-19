@@ -11,6 +11,9 @@ h1 {
 .logo{
   padding:15px;
 }
+.lead{
+  font-size:20px;
+}
 .facebook{
   background-color:#0101DF!important;
   color:#fff!important;

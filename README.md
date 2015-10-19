@@ -38,3 +38,4 @@ Comentarios
 ## pendientes
 - Agregar el login al inicio
 - Mostrar publicaciones y sus detalles
+- Mandar correo al recibir comentarios a una necesidad

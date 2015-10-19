@@ -18,10 +18,25 @@ var User = sequelize.define('user', {
   facebook:{
     type: Sequelize.STRING(30)
   },
+  type:{
+    type: Sequelize.STRING(20) // usuario, empresa
+  },
+  details:{
+    type: Sequelize.STRING // información adicional sobre la persona o negocio
+  },
+  picture:{
+    type: Sequelize.STRING(120) // información adicional sobre la persona o negocio
+  },
+  phone:{
+    type: Sequelize.STRING(20) // usuario, empresa
+  },
+  website:{
+    type: Sequelize.STRING(150) // usuario, empresa
+  },
   lastLogin: {
     type: Sequelize.DATE,
     field:'last_login'
-  }  
+  }
 }, {
   timestamps: true,
   paranoid: true,

@@ -20,6 +20,7 @@
               <p class="help-block">Texto que les aparecerá a todos los usuarios en la página de inicio, se recomienda iniciar con "Yo necesito...".</p>
             </div>
           </div>
+          <br>
           <div class="row">
             <div class="col-md-4">Descripción</div>
             <div class="col-md-5">
@@ -29,6 +30,7 @@
               </p>
             </div>
           </div>
+          <br>
           <div class="row">
             <div class="col-md-4">Categoría</div>
             <div class="col-md-5">
@@ -43,6 +45,17 @@
                   Otro</option>
               </select>
               <p class="help-block">Sección en la que aparecerá tu necesidad</p>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4">Necesidad cubierta</div>
+            <div class="col-md-5">
+              <ui-switch
+                ng-model='DetalleCtrl.necesidad.status'></ui-switch>
+              <p class="help-block">
+                Marca esta casilla cuando tu necesidad haya quedado resuelta para que deje de estar visible
+              </p>
             </div>
           </div>
 

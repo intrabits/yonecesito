@@ -1,22 +1,24 @@
 (function () {
   'use strict';
-  angular.module('app.user', ['app.user.service'])
-    .controller('UserCtrl',['$scope','User',function($scope,User){
+  angular.module('app.user', [
+    'app.user.service',
+    'app.user.config' // editar perfil del usuario y su configuración
+  ])
+    .controller('UserCtrl',['ngNotify','User','$routeParams',function(ngNotify,User,$routeParams){
 
-      User.one('profile').get()
-        .then(function  (data) {
-          $scope.FormUser = data;
+      var vm = this;
+      console.log('Cargando');
+
+      User.show($routeParams.id)
+        .success(function  (data) {
+            vm.user = data;
+            console.log('no');
+            console.log(data);
         })
-        .catch(function  (err) {
-          alert(err.data);
+        .error(function  (err) {
+          ngNotify.set(err,'error');
         });
 
-      $scope.updateProfile = function  () {
-        $scope.FormUser.put()
-          .catch(function  (err) {
-            alert(err.data);
-          });
-      };
     }]);
 
 })();

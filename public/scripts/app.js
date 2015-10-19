@@ -49,7 +49,21 @@
           controller:'CategoriaCtrl',
           controllerAs:'CategoriaCtrl'
         })
-
+        .when('/perfil', {
+          templateUrl: 'scripts/users/config.html',
+          reloadOnSearch: false,
+          controller:'ConfigCtrl',
+          controllerAs:'ConfigCtrl'
+        })
+        .when('/usuario/:id', {
+          templateUrl: 'scripts/users/profile.html',
+          reloadOnSearch: false,
+          controller:'UserCtrl',
+          controllerAs:'UserCtrl'
+        })
+        .when('/contacto', {
+          templateUrl: 'scripts/shared/contacto.html'          
+        })
         .otherwise({
           redirectTo: '/'
         });

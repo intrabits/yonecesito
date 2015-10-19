@@ -33,7 +33,7 @@
 
       $scope.bottomReached = function() {
         /* global alert: false; */
-        alert('Congrats you scrolled to the end of the list!');
+        // alert('Congrats you scrolled to the end of the list!');
       };
 
 

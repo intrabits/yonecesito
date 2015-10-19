@@ -8,6 +8,7 @@ var nark = require('./../../config').nark;
  * Get list of users
  * restriction: 'admin'
  */
+// jshint ignore:start
 exports.index = async function(req, res) {
   try {
     let users = await User.query();
@@ -17,40 +18,33 @@ exports.index = async function(req, res) {
     res.status(500).send('Error al cargar');
   }
 };
+// jshint ignore:end
 
-/**
- * Creates a new user
- */
-exports.create = function (req, res, next) {
-  var newUser = new User(req.body);
-  newUser.provider = 'local';
-  newUser.role = 'user';
-  newUser.save(function(err, user) {
-    if (err) return validationError(res, err);
-    var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
-    res.json({ token: token });
-  });
-};
 
-exports.update = function  (req,res) {  
 
-  User.find(req.user.id)
+exports.update = function  (req,res) {
+
+  User.findById(req.user.id)
     .then(function  (u) {
       var data = {
         name:sanitizer.sanitize( req.body.name ),
         surname:sanitizer.sanitize( req.body.surname ),
         email:sanitizer.sanitize( req.body.email ),
-        pagos:sanitizer.sanitize( req.body.pagos )
+        details:sanitizer.sanitize( req.body.details ),
+        phone:req.body.phone,
+        website:req.body.website,
+        type:req.body.type
       };
+      
       return u.updateAttributes(data);
 
     })
     .then(function  () {
-      console.log('Alguien actualizó su perfil');
+      console.log(req.user.name,' actualizó su perfil');
       res.send('Perfil actualizado');
     })
     .catch(function  (err) {
-      console.log(err);
+      console.trace(err);
       res.status(500).send('Error al actualizar tus datos');
     });
 };
@@ -58,13 +52,18 @@ exports.update = function  (req,res) {
  * Get a single user
  */
 exports.show = function (req, res, next) {
-  var userId = req.params.id;
 
-  User.findById(userId, function (err, user) {
-    if (err) return next(err);
-    if (!user) return res.send(401);
-    res.json(user.profile);
-  });
+  console.log('Cargando perfil de usuario de ',req.params.id);
+
+  User.findOne({where:{id:req.params.id},attributes:['name','surname','email','type','phone']})
+    .then(function (data) {
+
+      res.json(data);
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.status(500).send('Error al cargar el perfil del usuario');
+    });
 };
 
 
@@ -94,14 +93,23 @@ exports.changePassword = function(req, res, next) {
  */
 exports.me = function(req, res, next) {
 
-  var profile = {
-    id:req.user.id,
-    name : req.user.name,
-    surname : req.user.surname,
-    email: req.user.email
-  };
+  // var profile = {
+  //   id:req.user.id,
+  //   name : req.user.name,
+  //   surname : req.user.surname,
+  //   email: req.user.email
+  // };
 
-  res.json(profile);
+  User.findById(req.user.id)
+    .then(function (profile) {
+      profile.lastLogin = new Date();
+      res.json(profile);
+      return profile.save();
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.status(500).send('Error al cargar perfil de usuario');
+    });
 
   // User
   //   .query()
