@@ -46,14 +46,19 @@ passport.use(new LocalStrategy({
       User.findOne({where:{email:user_email}})
         .then(function (user) {
 
-          bcrypt.compare(user_password,user.password,function (err,isPasswordMatch) {
-            console.log('Coinciden las contraseñas: ',colors.yellow(isPasswordMatch));
-            if (isPasswordMatch && user) {
-              done(null,user);
-            } else {
-              done(null,false);
-            }
-          });
+          if (user) {
+            bcrypt.compare(user_password,user.password,function (err,isPasswordMatch) {
+              console.log('Coinciden las contraseñas: ',colors.yellow(isPasswordMatch));
+              if (isPasswordMatch) {
+                done(null,user);
+              } else {
+                done(null,false);
+              }
+            });
+          } else {
+            done(null,false);
+          }
+          
 
         })
         .catch(function (err) {

@@ -12,7 +12,8 @@ app.use('/api/', require('./routes/api'));
 
 // Errores más amigables en caso de cosas inesperado
 app.use(function(err, req, res, next) {
-  nark.warning(err.toString());
+  
+  console.error(err);
     res.status(err.status || 500);
   res.render('error', {
       message: 'Ocurrió algo inesperado dentro de la aplicación, estamos trabajando para resolverlo.',
