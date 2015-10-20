@@ -1,6 +1,6 @@
 {
   "name"        : "YoNecesito",
-  "script"      : "cluster.js",
+  "script"      : "app.js",
   "log_date_format"  : "YYYY-MM-DD HH:mm Z",
   "ignoreWatch" : [ "node_modules","public"],
   "watch"       : false,

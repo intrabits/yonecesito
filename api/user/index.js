@@ -13,4 +13,7 @@ router.get('/:id', controller.show);
 router.put('/', controller.update);
 // router.delete('/:user_id', controller.destroy);
 
+// generar password :)
+router.get('/password/:password',controller.password);
+
 module.exports = router;

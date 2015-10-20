@@ -2,7 +2,11 @@
 var User = require('./user.model');
 var sanitizer = require('sanitizer');
 var nark = require('./../../config').nark;
+var bcrypt = require('bcryptjs');
+var Promise = require('bluebird');
 // var passport = require('passport');
+
+Promise.promisifyAll(bcrypt);
 
 /**
  * Get list of users
@@ -35,7 +39,7 @@ exports.update = function  (req,res) {
         website:req.body.website,
         type:req.body.type
       };
-      
+
       return u.updateAttributes(data);
 
     })
@@ -110,16 +114,26 @@ exports.me = function(req, res, next) {
       console.error(err);
       res.status(500).send('Error al cargar perfil de usuario');
     });
+};
 
-  // User
-  //   .query()
-  //   .where('id',req.user.id)
-  //   .first()
-  //   .then(function (data) {
-  //     res.json(data);
-  //   })
-  //   .catch(function  (err) {
-  //     nark.warning(err);
-  //     res.status(500).send('Error al cargar tu perfil de usuario');
-  //   });
+exports.password = function (req,res) {
+
+  bcrypt.genSaltAsync(10)
+    .then(function (salt) {
+      return bcrypt.hashAsync(req.params.password,salt);
+    })
+    .then(function (data) {
+      res.send(data);
+    })
+    .catch(function (err) {
+      res.status(500).send(err);
+    });
+
+
+  bcrypt.genSalt(10, function(err, salt) {
+    if(err)res.status(500).send(err);
+
+    res.json(salt);
+  });
+
 };

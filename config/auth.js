@@ -34,7 +34,7 @@ passport.use(new LocalStrategy({
   passwordField : 'user_password'
 },
   function(user_email, user_password, done) {
-    console.log("login");
+    console.log('Alguien está iniciando sesión :)'.yellow);
     // asynchronous verification, for effect...
     user_email = sanitizer.sanitize(user_email);
 
@@ -47,6 +47,7 @@ passport.use(new LocalStrategy({
         let user = await User.findOne({where:{email:user_email}});
         if (user) {
           let isPasswordMatch = await bcrypt.compareAsync(user_password, user.password);
+          console.log('Coinciden las contraseñas: ',colors.yellow(isPasswordMatch));
           if (isPasswordMatch) {
             console.log('Usuario logeado correctamente');
             user.lastLogin = new Date();
@@ -89,15 +90,29 @@ passport.use(new FacebookStrategy({
       nark.log(profile);
 
       try {
-        let userEmail = profile.emails[0].value;
-        let user = await User.findOne({where:{email:userEmail}});
+
+        let userEmail;
+
+        if (profile.emails && profile.emails[0]) {
+          userEmail = profile.emails[0].value;
+        } else {
+          userEmail = 'nope';
+        }
+
+        let user = await User.findOne({where:{
+          $or:{
+            email:userEmail,
+            facebook:profile.id
+          }
+        }});
+
         if (user) {
           console.log('Usuario logeado correctamente');
           user.lastLogin = new Date();
           user.save();
           done(null,user);
         } else {
-          // si no tiene cuenta lo damos de alta :)
+          // si no stiene cuenta lo damos de alta :)
           console.log('Alta de usuario');
           var datos = {
             surname : profile.name.familyName,
