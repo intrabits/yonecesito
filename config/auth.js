@@ -42,30 +42,26 @@ passport.use(new LocalStrategy({
     process.nextTick( async function () {
       console.log(user_email);
       console.log(user_password);
+      var user;
 
-      try {
-        let user = await User.findOne({where:{email:user_email}});
-        if (user) {
-          let isPasswordMatch = await bcrypt.compareAsync(user_password, user.password);
+      User.findOne({where:{email:user_email}})
+        .then(function (data) {
+          user = data;
+
+          return bcrypt.compareAsync(user_password,user.password);
+        })
+        .then(function (isPasswordMatch) {
           console.log('Coinciden las contraseñas: ',colors.yellow(isPasswordMatch));
           if (isPasswordMatch) {
-            console.log('Usuario logeado correctamente');
-            user.lastLogin = new Date();
-            user.save();
             done(null,user);
           } else {
-            console.log('Contraseña incorrecta');
             done(null,false);
           }
-        } else {
-          done(null,false);
-        }
-      } catch (e) {
-        console.error(e);
-        done(e);
-      }
-
-
+        })
+        .catch(function (err) {
+          console.error(err);
+          done(err);
+        });
 
     });
   }
@@ -117,7 +113,7 @@ passport.use(new FacebookStrategy({
           var datos = {
             surname : profile.name.familyName,
             name    : profile.name.givenName,
-            email   : profile.emails[0].value,
+            email   : userEmail,
             facebook : profile.id
           };
           user = await User.create(datos);
@@ -150,7 +146,5 @@ exports.isLogged = function(req,res,next) {
   }
 };
 
-   module.exports.ensureAuthenticated = ensureAuthenticated;
-   module.exports.passport = passport;
-
-  //  module.exports.FacebookStrategy = FacebookStrategy;
+module.exports.ensureAuthenticated = ensureAuthenticated;
+module.exports.passport = passport;
