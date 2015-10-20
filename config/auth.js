@@ -42,21 +42,19 @@ passport.use(new LocalStrategy({
     process.nextTick( async function () {
       console.log(user_email);
       console.log(user_password);
-      var user;
 
       User.findOne({where:{email:user_email}})
-        .then(function (data) {
-          user = data;
+        .then(function (user) {
 
-          return bcrypt.compareAsync(user_password,user.password);
-        })
-        .then(function (isPasswordMatch) {
-          console.log('Coinciden las contraseñas: ',colors.yellow(isPasswordMatch));
-          if (isPasswordMatch && user) {
-            done(null,user);
-          } else {
-            done(null,false);
-          }
+          bcrypt.compare(user_password,user.password,function (err,isPasswordMatch) {
+            console.log('Coinciden las contraseñas: ',colors.yellow(isPasswordMatch));
+            if (isPasswordMatch && user) {
+              done(null,user);
+            } else {
+              done(null,false);
+            }
+          });
+
         })
         .catch(function (err) {
           console.error(err);
