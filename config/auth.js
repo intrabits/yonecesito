@@ -52,7 +52,7 @@ passport.use(new LocalStrategy({
         })
         .then(function (isPasswordMatch) {
           console.log('Coinciden las contraseñas: ',colors.yellow(isPasswordMatch));
-          if (isPasswordMatch) {
+          if (isPasswordMatch && user) {
             done(null,user);
           } else {
             done(null,false);
