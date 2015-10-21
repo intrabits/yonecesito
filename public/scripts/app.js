@@ -5,6 +5,7 @@
     .module('app', [
       'ngRoute',
       'mobile-angular-ui',
+      'angular-loading-bar',
       'app.main',
       'app.home',
       'ngNotify',
@@ -65,7 +66,7 @@
           templateUrl: 'scripts/shared/contacto.html'
         })
         .when('/privacidad', {
-          templateUrl: 'scripts/shared/privacidad.html'          
+          templateUrl: 'scripts/shared/privacidad.html'
         })
         .otherwise({
           redirectTo: '/'

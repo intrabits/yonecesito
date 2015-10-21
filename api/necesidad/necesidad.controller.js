@@ -3,6 +3,9 @@ var User = require('./../user/user.model');
 var Categoria = require('./categoria/categoria.model');
 var Comentario = require('./comentario/comentario.model');
 var colors = require('colors');
+var shortId = require('shortid');
+var fs = require('fs');
+var Jimp = require('jimp');
 
 exports.load = function (req,res) {
 
@@ -112,6 +115,69 @@ exports.show = function (req,res) {
     .catch(function (err) {
       console.error(err);
       res.status(500).send('Error al cargar la necesidad');
+    });
+
+};
+
+exports.upload = function (req,res) {
+
+
+
+  Necesidad.findOne({where:{id:req.params.id,userId:req.user.id}})
+    .then(function (necesidad) {
+      console.log(req.user.name,' está subiendo una imagen para: ',necesidad.titulo);
+      req.pipe(req.busboy);
+      req.busboy.on('file', function (fieldname, file, filename,encoding, mimetype) {
+        console.log('Peparandose para subir archivo');
+        console.log(mimetype);
+        if (mimetype==='image/png'||mimetype==='image/jpeg'||mimetype==='application/pdf') {
+          var name = shortId.generate() + '_' + filename;
+          var path = 'public/necesidades/full/' + name;
+          var pathThumb = 'public/necesidades/thumbs/' + name;
+
+          var fstream = fs.createWriteStream(path);
+          file.pipe(fstream);
+          fstream.on('close', function () {
+            console.log('Subiendo archivo');
+
+            // una vez subido el archivo procedemos  a crearle un thumbnail
+            var lenna = new Jimp(path, function (err, image) {
+              if (err) {
+                return console.error(err);
+              }
+
+              this.resize(600,Jimp.AUTO) // resize
+                  .crop(0, 0, 250, 250) // crop
+                  .write(pathThumb); // guardar thumbnail
+
+              necesidad.thumb = '/necesidades/thumbs/' + name;
+              necesidad.foto = '/necesidades/full/' + name;
+              necesidad.save()
+                .then(function (data) {
+                  res.send('Imagen guardada correctamente');
+                })
+                .catch(function (err) {
+                  console.error(err);
+                  res.status(500).send('Error al guardar la imagen');
+                });
+            });
+          });
+
+          fstream.on('error', function (err) {
+            console.log('Error al subir el archivo'.red);
+            console.log(err);
+            res.status(500).send('Error al subir el archivo');
+          });
+        }else{
+          res.status(500).send('Formato de archivo no válido');
+        }
+
+      });
+
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.status(500).send('Error al cargar la imagen');
     });
 
 };

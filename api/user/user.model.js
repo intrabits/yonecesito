@@ -25,13 +25,16 @@ var User = sequelize.define('user', {
     type: Sequelize.STRING // información adicional sobre la persona o negocio
   },
   picture:{
-    type: Sequelize.STRING(120) // información adicional sobre la persona o negocio
+    type: Sequelize.STRING(120)
   },
   phone:{
-    type: Sequelize.STRING(20) // usuario, empresa
+    type: Sequelize.STRING(20)
   },
   website:{
-    type: Sequelize.STRING(150) // usuario, empresa
+    type: Sequelize.STRING(150)
+  },
+  address:{
+    type: Sequelize.STRING(170)
   },
   lastLogin: {
     type: Sequelize.DATE,

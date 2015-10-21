@@ -49,7 +49,7 @@ exports.create = function (req, res, next) {
   req.busboy.on('file', function (fieldname, file, filename,encoding, mimetype) {
     console.log('Peparandose para subir archivo');
     console.log(mimetype);
-    if (mimetype=='image/png'||mimetype=='image/jpeg'||mimetype=='application/pdf') {
+    if (mimetype==='image/png'||mimetype==='image/jpeg'||mimetype==='application/pdf') {
       dateFile = moment(dateFile);
       var path = "archivos/"+req.user.id+"_"+dateFile.format();
       switch (mimetype) {
@@ -71,7 +71,7 @@ exports.create = function (req, res, next) {
         console.log("Subiendo archivo");
         var data = {
           nombre:sanitizer.sanitize(filename),
-          ruta:path,          
+          ruta:path,
           userId:req.user.id
         };
 

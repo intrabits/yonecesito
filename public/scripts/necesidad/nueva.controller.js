@@ -11,8 +11,7 @@
         vm.create = function () {
           Necesidad.create(vm.NecesidadForm)
             .success(function (data) {
-              ngNotify.set(data,'success');                            
-              $window.location = '#/necesidad/' + data;
+              ngNotify.set('Necesidad agregada correctamente :)','success'); $window.location = '#/necesidad/' + data + '/editar';
             })
             .error(function (err) {
               ngNotify.set(err,'error');

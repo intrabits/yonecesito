@@ -9,6 +9,8 @@ router.get('/',NecesidadCtrl.load);
 router.post('/',auth.isLogged,NecesidadCtrl.create);
 // detalle de una necesidad
 router.get('/:id',NecesidadCtrl.show);
+// subir imagen a una necesidad
+router.post('/:id/upload',NecesidadCtrl.upload);
 // eliminar necesidad
 router.delete('/:id',NecesidadCtrl.delete);
 // editar necesidad

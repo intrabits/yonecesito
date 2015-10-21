@@ -24,6 +24,13 @@
               url     : '/api/necesidades'
             });
           },
+          upload:function (fd,id) {
+            return $http.post('/api/necesidades/' + id + '/upload', fd, {
+              withCredentials: true,
+              headers: {'Content-Type': undefined },
+              transformRequest: angular.identity
+            });
+          },
           update:function (data) {
             return $http({
               data    :  data,

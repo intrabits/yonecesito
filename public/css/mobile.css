@@ -29,6 +29,15 @@ h1 {
 .section{
   background-color: #dfdfdf;
 }
+.necesidad a{
+  color:#444;
+  display: block;
+  text-decoration: none;
+}
+.panel-heading{
+  min-height: 40px;
+}
+
 .chat-user-avatar {
   font-size: 40px;
   background: #ccc;

@@ -47,7 +47,18 @@
               <p class="help-block">Sección en la que aparecerá tu necesidad</p>
             </div>
           </div>
+
           <br>
+          <div class="row">
+            <div class="col-md-4">Imagen</div>
+            <div class="col-md-5">
+              <input type="file" name="file" id="file_input" onchange="angular.element(this).scope().upload(this.files)"/>
+              <p class="help-block">Escoge una imagen llamativa para que tu publicación destaque</p>
+            </div>
+          </div>
+
+          <br>
+
           <div class="row">
             <div class="col-md-4">Necesidad cubierta</div>
             <div class="col-md-5">
@@ -64,8 +75,8 @@
           <button class="btn btn-primary" type="submit" ng-click="DetalleCtrl.save()">
             <i class="fa fa-save"></i> Guardar cambios
           </button>
-          <a class="btn btn-default" onclick="window.history.back();">
-            Cancelar
+          <a class="btn btn-default" href="#/necesidad/{{DetalleCtrl.necesidad.id}}">
+            Regresar
           </a>
 
           <a class="btn btn-danger pull-right"  ng-click="DetalleCtrl.delete()">

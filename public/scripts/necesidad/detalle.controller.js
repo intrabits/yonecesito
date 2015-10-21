@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('app.necesidad.detalle',[])
-      .controller('NecesidadDetalleCtrl',['Necesidad','ngNotify','$routeParams','$window','Comentario',function (Necesidad,ngNotify,$routeParams,$window,Comentario) {
+      .controller('NecesidadDetalleCtrl',['Necesidad','ngNotify','$routeParams','$window','Comentario','$scope',function (Necesidad,ngNotify,$routeParams,$window,Comentario,$scope) {
 
         var vm = this;
         vm.necesidad = {};
@@ -55,6 +55,28 @@
                 ngNotify.set(err,'error');
               });
           }
+        };
+
+        $scope.upload = function(files) {
+          console.log('Subiendo archivo');
+          var fd = new FormData();
+          //Take the first selected file
+
+          if (files[0]) {
+            fd.append("file", files[0]);
+
+            Necesidad.upload(fd,$routeParams.id)
+              .success(function (data) {
+                ngNotify.set(data,'success');
+                console.log(data);
+              })
+              .error(function (err) {
+                console.log(err);
+                ngNotify.set(err,'error');
+              });
+          }
+
+
         };
 
 

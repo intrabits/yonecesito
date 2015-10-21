@@ -13,7 +13,7 @@ gulp.task('default', function () {
   nodemon({
     script: 'app.js',
     ext: 'js ejs',
-    ignore: ['public'],
+    ignore: ['public','node_modules'],
     env: { 'NODE_ENV': 'dev' }
   });
   var files = [

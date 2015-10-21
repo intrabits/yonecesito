@@ -57,16 +57,24 @@
             </div>
           </div>
           <br>
-          <div class="row">
+          <div class="row" ng-if="ConfigCtrl.user.type=='empresa'">
             <div class="col-md-4">Teléfono</div>
             <div class="col-md-5">
               <input type="text" class="form-control" ng-model="ConfigCtrl.user.phone">            </div>
           </div>
           <br>
-          <div class="row">
+          <div class="row" ng-if="ConfigCtrl.user.type=='empresa'">
             <div class="col-md-4">Website</div>
             <div class="col-md-5">
               <input type="text" class="form-control" ng-model="ConfigCtrl.user.website">
+            </div>
+          </div>
+
+          <br>
+          <div class="row" ng-if="ConfigCtrl.user.type=='empresa'">
+            <div class="col-md-4">Dirección</div>
+            <div class="col-md-5">
+              <input type="text" class="form-control" ng-model="ConfigCtrl.user.address">
             </div>
           </div>
 

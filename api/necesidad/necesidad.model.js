@@ -15,6 +15,9 @@ var Necesidad = sequelize.define('necesidad', {
   foto:{
     type: Sequelize.STRING,
   },
+  thumb:{
+    type: Sequelize.STRING,
+  },
   categoriaId:{
     type: Sequelize.INTEGER,
   }

@@ -16,20 +16,32 @@
               ng-model="NuevaNecesidadCtrl.NecesidadForm.titulo"
               class="form-control"></textarea>
         </div>
-        <div class="panel-footer" ng-if="NuevaNecesidadCtrl.NecesidadForm.titulo.length>0">
-          <button class="btn btn-primary pull-right" ng-click="NuevaNecesidadCtrl.create()">
-            <i class="fa fa-save"></i> Guardar
-          </button>
-          <select
-            class="form-control pull-right"
-            style="width:300px;"
-            ng-model="NuevaNecesidadCtrl.NecesidadForm.categoriaId">
-            <option value="1">Productos</option>
-            <option value="2">Servicios</option>
-            <option value="3">Otro</option>
-          </select>
-          <p class="pull-right">Categoría : </p>
-          <p>Quedan: {{150 - NuevaNecesidadCtrl.NecesidadForm.titulo.length}} caracteres</p>
+        <!-- ng-if="NuevaNecesidadCtrl.NecesidadForm.titulo.length>0" -->
+        <div class="panel-footer" style="height:60px">
+          <p class="pull-left">Quedan: {{150 - NuevaNecesidadCtrl.NecesidadForm.titulo.length}} caracteres</p>
+          <div class="pull-right">
+            <div class="row">
+              <div class="col-md-4">
+                Categoría:
+              </div>
+              <div class="col-md-5">
+                <select
+                  class="form-control pull-right"
+                  ng-model="NuevaNecesidadCtrl.NecesidadForm.categoriaId">
+                  <option value="1">Productos</option>
+                  <option value="2">Servicios</option>
+                  <option value="3">Otro</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <button class="btn btn-primary pull-right" ng-click="NuevaNecesidadCtrl.create()">
+                  <i class="fa fa-save"></i> Guardar
+                </button>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
 
