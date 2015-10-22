@@ -113,9 +113,10 @@ passport.use(new FacebookStrategy({
         } else {
           // si no stiene cuenta lo damos de alta :)
           console.log('Alta de usuario');
+          let nombre = profile.name.givenName || profile.displayName;
           var datos = {
             surname : profile.name.familyName,
-            name    : profile.name.givenName,
+            name    : nombre,
             email   : userEmail,
             facebook : profile.id
           };
