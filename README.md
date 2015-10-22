@@ -39,3 +39,5 @@ Comentarios
 - Agregar el login al inicio
 - Mostrar publicaciones y sus detalles
 - Mandar correo al recibir comentarios a una necesidad
+- Perfiles de empresas/personas
+- Seleccionar una respuesta como favorita
