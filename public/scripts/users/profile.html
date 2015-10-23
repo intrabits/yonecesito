@@ -13,6 +13,12 @@
           {{UserCtrl.user.name}}
           <!-- <small>{{DetalleCtrl.necesidad.user.name}}</small> -->
         </h1>
+        <div class="alert alert-warning">
+          <h3>Pendiente</h3>
+          <p>
+            Me gustaría hacer esta parte como los perfiles de whats app, qué les parece a ustedes?
+          </p>
+        </div>
         <div class="row">
           <div class="col-md-4" ng-if="DetalleCtrl.necesidad.createdAt">
             <strong>Fecha:</strong> {{UserCtrl.user.createdAt|date:'dd/MM/yyyy'}}

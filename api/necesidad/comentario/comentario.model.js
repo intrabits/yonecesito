@@ -11,6 +11,9 @@ var Comentario = sequelize.define('comentario', {
   },
   texto:{
     type: Sequelize.STRING,
+  },
+  util:{
+    type: Sequelize.BOOLEAN // marcar este comentario como útil para cubrir la necesidad
   }
 
 }, {

@@ -4,6 +4,7 @@
     .module('app.necesidad',[
       'app.necesidad.service',
       'app.necesidad.nueva',
+      'app.necesidad.item',
       'app.necesidad.detalle',
       'app.necesidad.categoria',
       'app.comentario.service'

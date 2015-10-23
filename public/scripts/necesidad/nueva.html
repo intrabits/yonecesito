@@ -1,0 +1,37 @@
+<div class="panel panel-default" ng-controller="NuevaNecesidadCtrl as NuevaNecesidadCtrl">
+  <div class="panel-body">
+    <textarea
+        rows="3"
+        placeholder="Yo necesito..."
+        ng-model="NuevaNecesidadCtrl.NecesidadForm.titulo"
+        class="form-control"></textarea>
+  </div>
+  <!-- ng-if="NuevaNecesidadCtrl.NecesidadForm.titulo.length>0" -->
+  <div class="panel-footer" style="height:60px">
+    <p class="pull-left hidden-xs">
+      Quedan: {{150 - NuevaNecesidadCtrl.NecesidadForm.titulo.length}} caracteres</p>
+    <div class="pull-right">
+      <div class="row">
+        <div class="col-md-4 hidden-xs">
+          Categoría:
+        </div>
+        <div class="col-md-5 hidden-xs">
+          <select
+            class="form-control pull-right"
+            ng-model="NuevaNecesidadCtrl.NecesidadForm.categoriaId">
+            <option value="1">Productos</option>
+            <option value="2">Servicios</option>
+            <option value="3">Otro</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary pull-right" ng-click="NuevaNecesidadCtrl.create()">
+            <i class="fa fa-save"></i> Guardar
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

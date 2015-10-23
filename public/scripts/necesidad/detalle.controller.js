@@ -57,6 +57,18 @@
           }
         };
 
+        vm.util = function (comentario) {
+
+          Comentario.util(comentario.id)
+            .success(function (data) {
+              comentario.util = true;
+              ngNotify.set(data,'success');
+            })
+            .error(function (err) {
+              ngNotify.set(err,'error');
+            });
+        };
+
         $scope.upload = function(files) {
           console.log('Subiendo archivo');
           var fd = new FormData();

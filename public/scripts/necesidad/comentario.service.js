@@ -8,6 +8,9 @@
           delete:function (id) {
             return $http.delete('/api/comentarios/' + id);
           },
+          util:function (id) {
+            return $http.patch('/api/comentarios/' + id);
+          },
           create:function (data) {
             return $http({
               data    :  data,

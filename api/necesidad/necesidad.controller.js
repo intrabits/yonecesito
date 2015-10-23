@@ -10,6 +10,7 @@ var Jimp = require('jimp');
 exports.load = function (req,res) {
 
   var query = {
+    where:{ cubierta:false },
     orderBy:['fecha DESC']
   };
 
@@ -72,6 +73,7 @@ exports.update = function (req,res) {
       data.titulo = req.body.titulo;
       data.categoriaId = req.body.categoriaId;
       data.descripcion = req.body.descripcion;
+      data.cubierta = req.body.cubierta;
       return data.save()
     })
     .then(function (data) {
@@ -146,8 +148,8 @@ exports.upload = function (req,res) {
                 return console.error(err);
               }
 
-              this.resize(600,Jimp.AUTO) // resize
-                  .crop(0, 0, 250, 250) // crop
+              this.resize(350,Jimp.AUTO) // resize
+                  .crop(0, 0, 150, 150) // crop
                   .write(pathThumb); // guardar thumbnail
 
               necesidad.thumb = '/necesidades/thumbs/' + name;

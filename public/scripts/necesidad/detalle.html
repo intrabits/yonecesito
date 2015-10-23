@@ -78,16 +78,21 @@
 
     <!-- Comentarios -->
     <div class="panel panel-default" ng-repeat="comentario in DetalleCtrl.necesidad.comentarios">
-      <div class="panel-heading">
-        <div class="btn-group pull-right">
-          <a href="#/usuario/{{::comentario.userId}}" class='btn'>
+      <div class="panel-heading" style="min-height:50px">
+        <div class="pull-right">
+          <a href="javascript:;"
+            ng-hide="comentario.util"
+            ng-click="DetalleCtrl.util(comentario)" class='btn btn-primary'>
+            !Esto es lo que necesito!
+          </a>
+          <a href="#/usuario/{{::comentario.userId}}" class='btn btn-default'>
             Ver perfil
           </a>
         </div>
-        <h3 class="panel-title">{{comentario.createdAt|date:'dd/MM/yyyy'}}</h3>
+        <h3 class="panel-title">{{::comentario.createdAt|date:'dd/MM/yyyy'}}</h3>
       </div>
       <div class="panel-body">
-        {{comentario.texto}}
+        {{::comentario.texto}}
       </div>
     </div>
 

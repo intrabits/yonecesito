@@ -1,0 +1,45 @@
+<div class="panel panel-default necesidad">
+
+
+  <div class="panel-heading">
+    <div class="btn-group pull-right">
+      <a ui-turn-on='myDropdown{{necesidad.id}}' class='btn'>
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+      <ul
+        ui-state="myDropdown{{necesidad.id}}"
+
+        class="dropdown-menu"
+        ui-outer-click="Ui.turnOff('myDropdown' + necesidad.id)"
+        ui-outer-click-if="Ui.active('myDropdown' + necesidad.id)"
+        role="menu"
+        ui-show="myDropdown{{necesidad.id}}"
+        ui-turn-off="myDropdown{{necesidad.id}}">
+
+        <li><a href="#/usuario/{{::necesidad.user.id}}">Ver perfil de {{::necesidad.user.name}}</a></li>
+        <li><a>Guardar en favoritos</a></li>
+        <li class="divider"></li>
+        <li><a>Reportar necesidad</a></li>
+      </ul>
+    </div>
+    <h3 class="panel-title">{{::necesidad.user.name}}</h3>
+  </div>
+  <div class="panel-body">
+    <a ng-href="#/necesidad/{{::necesidad.id}}">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="no-image">
+            <img ng-src="{{::necesidad.thumb}}" width="75px"/>
+          </div>
+        </div>
+        <div class="col-md-10">
+          <h4>{{::necesidad.titulo}}</h4>
+          <p>
+            {{::necesidad.descripcion||'Sin descripción'}}
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+</div>
