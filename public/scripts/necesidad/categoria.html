@@ -8,74 +8,11 @@
     <div class="section">
 
       <!-- Publicar necesidad -->
-      <div class="panel panel-default" ng-controller="NuevaNecesidadCtrl as NuevaNecesidadCtrl">
-        <div class="panel-body">
-          <textarea
-              rows="3"
-              placeholder="Yo necesito..."
-              ng-model="NuevaNecesidadCtrl.NecesidadForm.titulo"
-              class="form-control"></textarea>
-        </div>
-        <!-- ng-if="NuevaNecesidadCtrl.NecesidadForm.titulo.length>0" -->
-        <div class="panel-footer" style="height:60px">
-          <p class="pull-left">Quedan: {{150 - NuevaNecesidadCtrl.NecesidadForm.titulo.length}} caracteres</p>
-          <div class="pull-right">
-            <div class="row">
-              <div class="col-md-4">
-                Categoría:
-              </div>
-              <div class="col-md-5">
-                <select
-                  class="form-control pull-right"
-                  ng-model="NuevaNecesidadCtrl.NecesidadForm.categoriaId">
-                  <option value="1">Productos</option>
-                  <option value="2">Servicios</option>
-                  <option value="3">Otro</option>
-                </select>
-              </div>
-              <div class="col-md-3">
-                <button class="btn btn-primary pull-right" ng-click="NuevaNecesidadCtrl.create()">
-                  <i class="fa fa-save"></i> Guardar
-                </button>
-              </div>
-            </div>
+      <nueva-necesidad></nueva-necesidad>
 
-          </div>
-
-        </div>
-      </div>
-
-
-      <div class="panel panel-default" ng-repeat="necesidad in CategoriaCtrl.necesidades">
-        <div class="panel-heading">
-          <div class="btn-group pull-right">
-            <a ui-turn-on='myDropdown{{idx}}' class='btn'>
-              <i class="fa fa-ellipsis-v"></i>
-            </a>
-            <ul
-              ui-state="myDropdown{{idx}}"
-
-              class="dropdown-menu"
-              ui-outer-click="Ui.turnOff('myDropdown' + idx)"
-              ui-outer-click-if="Ui.active('myDropdown' + idx)"
-              role="menu"
-              ui-show="myDropdown{{idx}}"
-              ui-turn-off="myDropdown{{idx}}">
-
-              <li><a>Action</a></li>
-              <li><a>Another action</a></li>
-              <li><a>Something else here</a></li>
-              <li class="divider"></li>
-              <li><a>Separated link</a></li>
-            </ul>
-          </div>
-          <h3 class="panel-title">{{necesidad.createdAt|date:'dd/MM/yyyy'}}</h3>
-        </div>
-        <div class="panel-body">
-          <a ng-href="#/necesidad/{{necesidad.id}}" style=" display: block; text-decoration:none ">
-            {{necesidad.titulo}}
-          </a>
-        </div>
+      <!-- Últimas necesidades -->
+      <div  ng-repeat="necesidad in CategoriaCtrl.necesidades">
+        <necesidad-item necesidad="necesidad"></necesidad-item>
       </div>
 
     </div>

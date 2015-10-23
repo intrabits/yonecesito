@@ -6,7 +6,7 @@
 
         var vm = this;
         vm.necesidad = {};
-        vm.ComentarioForm = {};
+        vm.Comentario = {};
 
         if ($routeParams.id) {
           Necesidad.show($routeParams.id)
@@ -29,14 +29,15 @@
         };
 
         vm.comentar = function () {
+
           vm.ComentarioForm.necesidadId = vm.necesidad.id;
-          vm.ComentarioForm.userId = vm.necesidad.userId;
-          vm.Comentario.createdAt = new Date();
 
           Comentario.create(vm.ComentarioForm)
             .success(function (data) {
               ngNotify.set(data,'success');
-              vm.necesidad.comentarios.push(vm.ComentarioForm);
+              vm.Comentario.createdAt = new Date();
+              vm.necesidad.comentarios.push(vm.Comentario);
+              vm.Comentario = {};              
             })
             .error(function (err) {
               ngNotify.set(err,'error');

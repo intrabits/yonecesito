@@ -9,10 +9,13 @@
       <div class="list-group-item list-group-item-home">
 
         <div class="row">
-          <div class="col-md-6">
-            <img ng-src="{{::DetalleCtrl.necesidad.foto}}" alt="">
+          <div class="col-md-5" >
+            <div class="no-image-big">
+              <img ng-src="{{::DetalleCtrl.necesidad.foto}}" alt="">
+            </div>
+
           </div>
-          <div class="col-md-6">
+          <div class="col-md-7">
 
             <h1>
               {{DetalleCtrl.necesidad.titulo}}
@@ -31,7 +34,10 @@
                 <strong>Fecha:</strong> {{::DetalleCtrl.necesidad.createdAt|date:'dd/MM/yyyy'}}
               </div>
               <div class="col-sm-6">
-                <strong>Usuario:</strong> {{::DetalleCtrl.necesidad.user.name}}
+                <strong>Usuario:</strong>
+                <a href="#/usuario/{{::DetalleCtrl.necesidad.user.id}}" class="btn btn-default">
+                  {{::DetalleCtrl.necesidad.user.name}}
+                </a>
               </div>
               <div class="col-sm-12">
                 <hr>
@@ -89,7 +95,11 @@
             Ver perfil
           </a>
         </div>
-        <h3 class="panel-title">{{::comentario.createdAt|date:'dd/MM/yyyy'}}</h3>
+        <h3 class="panel-title">
+          <span ng-show="comentario.util" class="badge necesidad-util">
+            <i class="fa fa-star"></i> Respuesta útil
+          </span>
+          {{::comentario.createdAt|date:'dd/MM/yyyy'}}</h3>
       </div>
       <div class="panel-body">
         {{::comentario.texto}}

@@ -5,7 +5,7 @@
       <!-- Publicar necesidad -->
       <nueva-necesidad></nueva-necesidad>
 
-
+      <!-- Últimas necesidades -->
       <div  ng-repeat="necesidad in HomeCtrl.necesidades">
         <necesidad-item necesidad="necesidad"></necesidad-item>
       </div>
@@ -13,33 +13,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div ui-content-for="title">
-  <span>Scroll</span>
-</div>
-
-<div class="scrollable" ui-state="searchBar" ng-controller="NecesidadesCtrl">
-  <input
-    ng-if="Ui.active('searchBar')"
-    type="search"
-    class="form-control scrollable-header"
-    placeholder="Search.." />
-
-  <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
-    <div class="list-group">
-      <a ng-repeat="necesidad in NecesidadesCtrl.necesidades" href="" class="list-group-item">
-        {{necesidad.titulo}}
-      </a>
-      <a ng-repeat="item in scrollItems" href="#" class="list-group-item">
-        {{ item }} <i class="fa fa-chevron-right pull-right"></i>
-      </a>
-    </div>
-  </div>
-
-  <a class="btn btn-block btn-lg btn-primary scrollable-footer" ui-toggle='searchBar'>
-    <i class="fa fa-search"></i>
-    <span ui-hide="searchBar">Show</span>
-    <span ui-show="searchBar">Hide</span>
-    Search Bar
-  </a>
-</div> -->

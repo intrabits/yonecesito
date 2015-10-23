@@ -1,7 +1,7 @@
 var express = require('express');
 
 var ComentarioCtrl = require('./comentario.controller');
-var auth = require('./../../config/auth');
+var auth = require('./../../../config/auth');
 var router = express.Router();
 
 // Toggle entre util e inútil

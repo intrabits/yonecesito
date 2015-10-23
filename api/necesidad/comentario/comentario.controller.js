@@ -1,4 +1,5 @@
 var Comentario = require('./comentario.model');
+var Necesidad = require('./../necesidad.model');
 
 exports.create = function (req,res) {
   console.log(req.user.name,' está dejando un comentario');
@@ -28,10 +29,9 @@ exports.util = async  function (req,res) {
     let necesidad = await Necesidad.findOne({where:{id:comentario.necesidadId}});
 
     // verificamos que sea el dueño :)
-    if (necesidad.userId === req.user.id) {
+    if (necesidad.userId == req.user.id) {
       comentario.util = !comentario.util;
-      let result = await comentario.save();
-      console.log(result);
+      let result = await comentario.save();      
       res.send('Comentario marcado!')
     } else {
       throw 'Opsie';
