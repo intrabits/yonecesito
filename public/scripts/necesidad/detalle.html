@@ -10,9 +10,8 @@
 
         <div class="row">
           <div class="col-md-5" >
-            <div class="no-image-big">
-              <img ng-src="{{::DetalleCtrl.necesidad.foto}}" alt="">
-            </div>
+            <img ng-if="DetalleCtrl.necesidad.foto" ng-src="{{::DetalleCtrl.necesidad.foto}}" alt="">
+            <div ng-if="!DetalleCtrl.necesidad.foto" class="no-image-big"></div>
 
           </div>
           <div class="col-md-7">

@@ -20,7 +20,7 @@
                   Error al iniciar sesión
                 </div>
               <% } %>
-              <form class="form-signin" action="/login" method="POST">
+
                 <div class="row">
                   <div class="col-md-6">
                     <a href="/auth/facebook" class="btn btn-primary form-control">
@@ -36,10 +36,29 @@
                   </div>
                 </div>
                 <br>
-                <input type="text"  name="user_email" class="form-control" placeholder="Email" required autofocus>
-                <input type="password" name="user_password" class="form-control" placeholder="Password" required>
-                <input type="submit" class="btn btn-lg btn-default btn-block" value="Iniciar sesión" />
-              </form>
+                <div id="loginForm">
+                  <form class="form-signin" action="/login" method="POST">
+                    <input type="text"  name="user_email" class="form-control" placeholder="Email" required autofocus>
+                    <input type="password" name="user_password" class="form-control" placeholder="Password" required>
+                    <input type="submit" class="btn btn-lg btn-default btn-block" value="Iniciar sesión" />
+                    <a href="javascript:;" onclick="toggleLogin()" class="btn btn-lg btn-default btn-block">Registro gratis</a>
+                  </form>
+
+                </div>
+
+                <div id="registroForm">
+                  <form class="form-signin" action="/login" method="POST">
+                    <input type="text"  name="user_email" class="form-control" placeholder="Email" required autofocus>
+                    <input type="text"  name="user_email" class="form-control" placeholder="Nombre de usuario" required >
+                    <input type="password" name="user_password" class="form-control" placeholder="Password" required>
+                    <input type="submit" class="btn btn-lg btn-default btn-block" value="Crear cuenta" />
+                    <a href="javascript:;" onclick="toggleLogin()" class="btn btn-lg btn-default btn-block">Inicia sesión</a>
+                  </form>
+                </div>
+
+
+
+
 
             </div>
 
@@ -53,6 +72,10 @@
   body{
     background-color:#f5f5f5;
   }
+  #registroForm{
+    display:none;
+  }
+
   .form-signin
   {
     max-width: 330px;
@@ -138,4 +161,10 @@
   }
 
 </style>
+<script>
+  function toggleLogin() {
+    $('#registroForm').slideToggle();
+    $('#loginForm').slideToggle();
+  }
+</script>
 <% include footer %>
