@@ -6,8 +6,14 @@
       .factory ('User', ['$http',function ($http) {
 
         return {
-          me:function () {
-            return $http.get('/api/users/profile');
+          me:function (id) {
+            
+            if (id) {
+              return $http.get('/api/users/' + id);
+            } else {
+              return $http.get('/api/users/profile');
+            }
+
           },
           update:function (data) {
             return $http({
@@ -18,6 +24,9 @@
           },
           show:function (id) {
             return $http.get('/api/users/' + id);
+          },
+          all:function () {
+            return $http.get('api/admin/users');
           }
         };
       }]);

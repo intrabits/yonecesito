@@ -17,6 +17,8 @@
           console.log(err);
         });
 
+
+
       // User agent displayed in home page
       $scope.userAgent = navigator.userAgent;
 

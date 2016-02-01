@@ -1,18 +1,14 @@
-<!-- <div ui-content-for="title">
-  <span><a href="#/">Inicio</a> > <a href="#/categoria/{{DetalleCtrl.necesidad.categoria.clave}}">{{DetalleCtrl.necesidad.categoria.titulo}}</a></span>
-</div> -->
+<div ui-content-for="title">
+    Configuración de usuario
+</div>
 
 <div class="scrollable" >
   <div class="scrollable-content">
 
-    <div class="list-group text-center">
+    <div class="list-group text-center section">
+
       <div class="list-group-item list-group-item-home">
-        <h1>
-          Configuración de usuario
-        </h1>
-      </div>
-      <div class="list-group-item list-group-item-home">
-        <form ng-submit="DetalleCtrl.save()">
+        <form ng-submit="DetalleCtrl.save()" class="">
           <div class="row">
             <div class="col-md-4">Nombre:</div>
             <div class="col-md-5">
@@ -52,7 +48,7 @@
             <div class="col-md-5">
               <textarea class="form-control" rows="4" ng-model="ConfigCtrl.user.details"></textarea>
               <p class="help-block">
-                Agrega información adicional sobre tu negocio
+                Agrega información adicional sobre {{ConfigCtrl.user.type=='empresa'?'tu negocio':'ti'}}
               </p>
             </div>
           </div>

@@ -14,6 +14,13 @@ h1 {
 .lead{
   font-size:20px;
 }
+.punch {
+  /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+  text-shadow: 2px 2px 5px black;
+  color:#fff;
+  margin:60px;
+  font-size:32px
+}
 .facebook{
   background-color:#0101DF!important;
   color:#fff!important;
@@ -26,7 +33,7 @@ h1 {
   background-color:#FF0000!important;
   color:#fff!important;
 }
-.section{
+.section,.scrollable{
   background-color: #dfdfdf;
 }
 .necesidad a{
@@ -38,6 +45,9 @@ h1 {
   width:75px;
   height: 75px;
   background-image: url(/images/no_photo.gif)
+}
+.help-block {
+  text-align: left;
 }
 .no-image-big{
   width:100%;

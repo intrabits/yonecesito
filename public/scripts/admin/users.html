@@ -1,0 +1,38 @@
+<div class="scrollable">
+  <div class="scrollable-content">
+    <div class="section">
+
+      <div class="panel">
+        <p>
+          <input type="text" class="form-control" placeholder="Buscar usuario..." ng-model="searchUser">
+        </p>
+        <br>
+        <table class="table table-bordered table-striped">
+          <head>
+            <tr>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Tipo</th>
+              <th>Descripción</th>
+              <th>Operaciones</th>
+            </tr>
+          </head>
+          <tbody>
+            <tr ng-repeat="user in ctrl.users|filter:searchUser">
+              <td><a href="#/user/{{::user.id}}">{{::user.name}}</a></td>
+              <td>{{::user.email}}</td>
+              <td>{{::user.type}}</td>
+              <td>{{::user.details}}</td>
+              <td>
+                <button class="btn btn-deafault">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

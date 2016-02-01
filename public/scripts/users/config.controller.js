@@ -1,13 +1,15 @@
 (function () {
   'use strict';
   angular.module('app.user.config', [])
-    .controller('ConfigCtrl',['ngNotify','User',function(ngNotify,User){
+    .controller('ConfigCtrl',['ngNotify','User','$routeParams',function(ngNotify,User,$routeParams){
 
       var vm = this;
       vm.user = {};
-      console.log('Cargando');
+      var userId = $routeParams.id;
 
-      User.me()
+      console.log(userId)
+
+      User.me(userId)
         .success(function  (data) {
           vm.user = data;
         })
