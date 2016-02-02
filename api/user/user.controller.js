@@ -179,3 +179,9 @@ exports.password = function (req,res) {
   });
 
 };
+
+exports.subscribe = function (req,res) {
+  console.log(`${req.user.email} se suscribió a `.blue);
+  console.log(req.body);
+  res.send('Suscrito correctamente')
+}

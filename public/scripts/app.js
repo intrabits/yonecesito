@@ -7,12 +7,12 @@
       'ngNotify',
       'mobile-angular-ui',
       'angular-loading-bar',
-      'app.main',
-      'app.home',
-      'app.admin',
-      'app.user',
+      'mobile-angular-ui.gestures',
       'app.necesidad',
-      'mobile-angular-ui.gestures'
+      'app.admin',
+      'app.home',
+      'app.main',
+      'app.user'
     ])
     .run(['$transform',function($transform) {
       window.$transform = $transform;

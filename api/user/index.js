@@ -5,9 +5,12 @@ var auth = require('./../../config/auth');
 var router = express.Router();
 
 // router.get('/', controller.index);
-router.get('/profile',auth.isLogged,auth.isLogged, controller.me);
+router.get('/profile', auth.isLogged, controller.me);
 // actualizar perfil
-router.put('/profile',auth.isLogged,auth.isLogged, controller.update);
+router.put('/profile', auth.isLogged, controller.update);
+
+router.post('/subscribe', auth.isLogged, controller.subscribe);
+
 router.get('/:id', controller.show);
 // router.put('/:user_id', controller.update);
 router.put('/', controller.update);

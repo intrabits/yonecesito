@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('app.admin.dashboard',[])
-      .directive('adminDashboard',function () {        
+      .directive('adminDashboard',function () {
         return {
             restrict: 'E',
             templateUrl: 'scripts/admin/dashboard.html',
