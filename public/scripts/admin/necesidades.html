@@ -1,0 +1,43 @@
+<div class="scrollable">
+  <div class="scrollable-content">
+    <div class="section">
+
+      <div class="panel panel-body">
+        <p>
+          <input type="text" class="form-control" placeholder="Buscar necesidad..." ng-model="searchNecesidad">
+        </p>
+        <br>
+        <table class="table table-striped">
+          <head>
+            <tr>
+              <th>Necesidad</th>
+              <th>Descripción</th>
+              <th>Categoría</th>
+              <th>Fecha</th>
+              <th>Operaciones</th>
+            </tr>
+          </head>
+          <tbody>
+            <tr ng-repeat="necesidad in ctrl.necesidades|filter:searchNecesidad">
+              <td><a href="#/necesidad/{{::necesidad.id}}/editar">{{::necesidad.titulo}}</a></td>
+              <td>{{::necesidad.descripcion}}</td>
+              <td>
+                <categoria id="{{::necesidad.categoriaId}}"></categoria>
+              </td>
+              <td>{{::necesidad.createdAt|date:'dd/MM/yyyy'}}</td>
+              <td>
+                <a class="btn btn-default" href="#/usuario/{{::necesidad.userId}}">
+                  <i class="fa fa-user"></i>
+                </a>
+                <button class="btn btn-danger" ng-click="ctrl.delete(necesidad.id)">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -13,7 +13,7 @@
           },
           categoria:function (clave) {
             return $http.get('/api/categorias/' + clave);
-          },
+          },          
           delete:function (id) {
             return $http.delete('/api/necesidades/' + id);
           },

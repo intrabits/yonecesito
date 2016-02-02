@@ -7,6 +7,7 @@
       'app.necesidad.item',
       'app.necesidad.detalle',
       'app.necesidad.categoria',
+      'app.necesidad.comentario',
       'app.comentario.service'
     ])
       .controller('NecesidadesCtrl',['Necesidad','ngNotify',function (Necesidad,ngNotify) {
@@ -21,5 +22,14 @@
             ngNotify.set(err, 'error');
           });
 
-      }]);
+      }])
+      .directive('categoria',function () {
+          return {
+            restrict: 'E',
+            templateUrl: 'scripts/necesidad/cate.html',
+            scope:{
+              id:'@'
+            }
+          };
+        });
 })();

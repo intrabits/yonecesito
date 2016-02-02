@@ -1,0 +1,22 @@
+<div class="panel panel-default" >
+  <div class="panel-heading" style="min-height:50px">
+    <div class="pull-right">
+      <a href="javascript:;"
+        ng-hide="comentario.util"
+        ng-click="DetalleCtrl.util(comentario)" class='btn btn-primary btn-sm'>
+        !Esto es lo que necesito!
+      </a>
+      <a href="#/usuario/{{::comentario.userId}}" class='btn btn-default btn-sm'>
+        Ver perfil
+      </a>
+    </div>
+    <h3 class="panel-title">
+      <span ng-show="comentario.util" class="badge necesidad-util">
+        <i class="fa fa-star"></i> Respuesta útil
+      </span>
+      {{::comentario.createdAt|date:'dd/MM/yyyy'}}</h3>
+  </div>
+  <div class="panel-body">
+    {{::comentario.texto}}
+  </div>
+</div>

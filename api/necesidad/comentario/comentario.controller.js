@@ -1,6 +1,20 @@
 var Comentario = require('./comentario.model');
 var Necesidad = require('./../necesidad.model');
 
+exports.all = function (req,res) {
+
+  Comentario.findAll({raw:true})
+    .then(function (data) {
+      console.log(`Cargando todos los comentarios, ${data.length} encontrados`);
+      res.json(data);
+    })
+    .catch(function (err) {
+      console.error(err)
+      res.status(500).send('Error al cargar los comentarios');
+    });
+
+}
+
 exports.create = function (req,res) {
   console.log(req.user.name,' está dejando un comentario');
   var data = {
@@ -20,6 +34,7 @@ exports.create = function (req,res) {
 
 };
 
+
 // jshint ignore:start
 exports.util = async  function (req,res) {
 
@@ -31,7 +46,7 @@ exports.util = async  function (req,res) {
     // verificamos que sea el dueño :)
     if (necesidad.userId == req.user.id) {
       comentario.util = !comentario.util;
-      let result = await comentario.save();      
+      let result = await comentario.save();
       res.send('Comentario marcado!')
     } else {
       throw 'Opsie';
@@ -46,7 +61,21 @@ exports.util = async  function (req,res) {
 
 exports.delete = function (req,res) {
   // TODO el dueño de la necesidad también debe de pode eliminar el comentario
-  Comentario.destroy({where:{id:req.params.id,userId:req.user.id}})
+
+  var where;
+  // solo se puede eliminar un comentario si el usuario es un administrador o es el dueño de la necesidad
+  if (req.user && req.user.type === 'admin') {
+    // admin
+    where = { id: req.params.id };
+  } else {
+    // dueño
+    where = {
+      id:req.params.id,
+      userId:req.user.id
+    };
+  }
+
+  Comentario.destroy({where:where})
     .then(function (comentar) {
       res.send('Comentario eliminado')
     })

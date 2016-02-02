@@ -135,7 +135,7 @@ passport.use(new FacebookStrategy({
 ));
 
 
-function ensureAuthenticated(req, res, next) {
+exports.ensureAuthenticated = function (req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   else{
       res.redirect('/login');
@@ -143,12 +143,21 @@ function ensureAuthenticated(req, res, next) {
 }
 
 
-exports.isLogged = function(req,res,next) {
+exports.isLogged = function (req,res,next) {
   if (req.isAuthenticated()) { return next(); }
   else{
     res.status(401).send('Primero debes de iniciar sesión!');
   }
 };
 
-module.exports.ensureAuthenticated = ensureAuthenticated;
+exports.isAdmin = function (req,res,next) {
+  if (req.isAuthenticated() && req.user.type === 'admin') {
+    return next();
+  } else {
+    res.status(401).send('No tienes los permisos suficientes para acceder aqui');
+  }
+};
+
+
+
 module.exports.passport = passport;

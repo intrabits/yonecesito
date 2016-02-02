@@ -12,12 +12,6 @@
       'app.admin',
       'app.user',
       'app.necesidad',
-      // touch/drag feature: this is from 'mobile-angular-ui.gestures.js'
-      // it is at a very beginning stage, so please be careful if you like to use
-      // in production. This is intended to provide a flexible, integrated and and
-      // easy to use alternative to other 3rd party libs like hammer.js, with the
-      // final pourpose to integrate gestures into default ui interactions like
-      // opening sidebars, turning switches on/off ..
       'mobile-angular-ui.gestures'
     ])
     .run(['$transform',function($transform) {
@@ -25,10 +19,6 @@
     }])
     .config(['$routeProvider',function ($routeProvider) {
       $routeProvider
-        .when('/', {
-          templateUrl: 'scripts/home/home.html',
-          reloadOnSearch: false
-        })
         .when('/', {
           templateUrl: 'scripts/home/scroll.html',
           reloadOnSearch: false,
@@ -58,10 +48,7 @@
           controllerAs:'ConfigCtrl'
         })
         .when('/usuario/:id', {
-          templateUrl: 'scripts/users/profile.html',
-          reloadOnSearch: false,
-          controller:'UserCtrl',
-          controllerAs:'UserCtrl'
+          template: '<user-profile></user-profile>'
         })
         .when('/contacto', {
           templateUrl: 'scripts/shared/contacto.html'
@@ -69,11 +56,17 @@
         .when('/privacidad', {
           templateUrl: 'scripts/shared/privacidad.html'
         })
+        .when('/admin', {
+          template: '<admin-dashboard></admin-dashboard>'
+        })
         .when('/admin/usuarios', {
           template: '<users-list></users-list>'
         })
-        .when('/admin/usuario/:id', {
-          template: '<user-settings></user-settings>'
+        .when('/admin/necesidades', {
+          template: '<necesidades-list></necesidades-list>'
+        })
+        .when('/admin/comentarios', {
+          template: '<comentarios-list></comentarios-list>'
         })
         .otherwise({
           redirectTo: '/'

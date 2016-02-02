@@ -5,11 +5,8 @@
 
       var vm = this;
       vm.user = {};
-      var userId = $routeParams.id;
 
-      console.log(userId)
-
-      User.me(userId)
+      User.me()
         .success(function  (data) {
           vm.user = data;
         })

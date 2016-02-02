@@ -11,6 +11,9 @@
           util:function (id) {
             return $http.patch('/api/comentarios/' + id);
           },
+          all:function () {
+            return $http.get('/api/comentarios/');
+          },
           create:function (data) {
             return $http({
               data    :  data,

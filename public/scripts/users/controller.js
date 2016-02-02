@@ -2,6 +2,7 @@
   'use strict';
   angular.module('app.user', [
     'app.user.service',
+    'app.user.profile',
     'app.user.config' // editar perfil del usuario y su configuración
   ])
     .controller('UserCtrl',['ngNotify','User','$routeParams',function(ngNotify,User,$routeParams){

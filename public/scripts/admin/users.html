@@ -2,12 +2,12 @@
   <div class="scrollable-content">
     <div class="section">
 
-      <div class="panel">
+      <div class="panel panel-body">
         <p>
           <input type="text" class="form-control" placeholder="Buscar usuario..." ng-model="searchUser">
         </p>
         <br>
-        <table class="table table-bordered table-striped">
+        <table class="table table-striped">
           <head>
             <tr>
               <th>Nombre</th>
@@ -19,7 +19,7 @@
           </head>
           <tbody>
             <tr ng-repeat="user in ctrl.users|filter:searchUser">
-              <td><a href="#/user/{{::user.id}}">{{::user.name}}</a></td>
+              <td><a href="#/usuario/{{::user.id}}">{{::user.name}}</a></td>
               <td>{{::user.email}}</td>
               <td>{{::user.type}}</td>
               <td>{{::user.details}}</td>

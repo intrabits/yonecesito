@@ -1,48 +1,193 @@
 <div ui-content-for="title">
   <span>
-    {{UserCtrl.user.name}}
+    {{ctrl.user.name}}
   </span>
 </div>
 
 <div class="scrollable section" >
   <div class="scrollable-content">
 
-    <div class="list-group text-center">
-      <div class="list-group-item list-group-item-home">
-        <h1>
-          {{UserCtrl.user.name}}
-          <!-- <small>{{DetalleCtrl.necesidad.user.name}}</small> -->
-        </h1>
-        <div class="alert alert-warning">
-          <h3>Pendiente</h3>
-          <p>
-            Me gustaría hacer esta parte como los perfiles de whats app, qué les parece a ustedes?
-          </p>
+    <div class="col-lg-12 col-sm-12">
+    <div class="card hovercard">
+        <div class="card-background">
+            <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/">
+            <!-- http://lorempixel.com/850/280/people/9/ -->
         </div>
-        <div class="row">
-          <div class="col-md-4" ng-if="DetalleCtrl.necesidad.createdAt">
-            <strong>Fecha:</strong> {{UserCtrl.user.createdAt|date:'dd/MM/yyyy'}}
-          </div>
-          <div class="col-md-4">
+        <div class="useravatar">
+            <img alt="" src="{{::ctrl.user.picture}}">
+        </div>
+        <div class="card-info"> <span class="card-title">{{::ctrl.user.name}}</span>
 
-          </div>
-          <div class="col-md-4">
+        </div>
+    </div>
 
+    <div class="panel panel400H">
+      <ui-state id='activeTab' default='1'></ui-state>
+
+        <ul class="nav nav-tabs">
+          <li ui-class="{'active': activeTab == 1}" style="width:33%">
+            <a ui-set="{'activeTab': 1}">Información general</a>
+          </li>
+          <li ui-class="{'active': activeTab == 2}" style="width:33%">
+            <a ui-set="{'activeTab': 2}">Necesidades publicadas</a>
+          </li>
+          <li ui-class="{'active': activeTab == 3}" style="width:33%">
+            <a ui-set="{'activeTab': 3}">Comentarios</a>
+          </li>
+        </ul>
+
+        <div ui-if="activeTab == 1">
+          <br>
+          <table class="table">
+            <tr>
+              <th>Nombre</th>
+              <td>{{::ctrl.user.name}}</td>
+            </tr>
+            <tr>
+              <th>Descripción personalizada</th>
+              <td>{{::ctrl.user.details}}</td>
+            </tr>
+            <tr>
+              <th>Sitio web</th>
+              <td>{{::ctrl.user.website}}</td>
+            </tr>
+            <tr ng-if="ctrl.user.type=='empresa'">
+              <th>Teléfono</th>
+              <td>{{::ctrl.user.phone}}</td>
+            </tr>
+            <tr ng-if="ctrl.user.type=='empresa'">
+              <th>Dirección</th>
+              <td>{{::ctrl.user.address}}</td>
+            </tr>
+
+          </table>
+        </div>
+
+        <div ui-if="activeTab == 2">
+          <div style="margin:20px">
+            <div  ng-repeat="necesidad in ctrl.user.necesidades">
+              <necesidad-item necesidad="necesidad"></necesidad-item>
+            </div>
           </div>
         </div>
-      </div>
-      <br>
-      <div class="list-group-item list-group-item-home">
-        <div>
-            <strong>Información adicional:</strong>
-            <p>
-              {{DetalleCtrl.necesidad.descripcion}}
-            </p>
+
+        <div ui-if="activeTab == 3">
+          <div style="margin:20px">
+            <div  ng-repeat="comentario in ctrl.user.comentarios">
+              <comentario comentario="comentario"></comentario>
+            </div>
+          </div>
         </div>
-      </div>
+    </div>
+
 
 
     </div>
 
+    </div>
+
+
   </div>
 </div>
+
+<style>
+  /* USER PROFILE PAGE */
+  .panel400H {
+    min-height: 400px;
+  }
+  .table {
+    margin:20px;
+  }
+  th{
+    width:30%;
+  }
+  .active {
+    background-color: #ddd;
+  }
+   .card {
+      margin-top: 20px;
+      padding: 30px;
+      background-color: rgba(214, 224, 226, 0.2);
+      -webkit-border-top-left-radius:5px;
+      -moz-border-top-left-radius:5px;
+      border-top-left-radius:5px;
+      -webkit-border-top-right-radius:5px;
+      -moz-border-top-right-radius:5px;
+      border-top-right-radius:5px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+  }
+  .card.hovercard {
+      position: relative;
+      padding-top: 0;
+      overflow: hidden;
+      text-align: center;
+      background-color: #fff;
+      background-color: rgba(255, 255, 255, 1);
+  }
+  .card.hovercard .card-background {
+      height: 130px;
+  }
+  .card-background img {
+      -webkit-filter: blur(25px);
+      -moz-filter: blur(25px);
+      -o-filter: blur(25px);
+      -ms-filter: blur(25px);
+      filter: blur(25px);
+      margin-left: -100px;
+      margin-top: -200px;
+      min-width: 130%;
+  }
+  .card.hovercard .useravatar {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      right: 0;
+  }
+  .card.hovercard .useravatar img {
+      width: 150px;
+      height: 150px;
+      max-width: 100px;
+      max-height: 100px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 255, 255, 0.5);
+  }
+  .card.hovercard .card-info {
+      position: absolute;
+      bottom: 14px;
+      left: 0;
+      right: 0;
+  }
+  .card.hovercard .card-info .card-title {
+      padding:0 5px;
+      font-size: 20px;
+      line-height: 1;
+      color: #262626;
+      background-color: rgba(255, 255, 255, 0.1);
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+  }
+  .card.hovercard .card-info {
+      overflow: hidden;
+      font-size: 12px;
+      line-height: 20px;
+      color: #737373;
+      text-overflow: ellipsis;
+  }
+  .card.hovercard .bottom {
+      padding: 0 20px;
+      margin-bottom: 17px;
+  }
+  .btn-pref .btn {
+      -webkit-border-radius:0 !important;
+  }
+  .page-header {
+    padding:20px;
+    text-align:center;
+  }
+
+</style>

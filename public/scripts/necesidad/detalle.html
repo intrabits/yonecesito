@@ -21,27 +21,30 @@
 
             </h1>
             <p>
-              <div ng-if="app.user.id == DetalleCtrl.necesidad.userId">
-                <a href="#/necesidad/{{::DetalleCtrl.necesidad.id}}/editar" class="btn btn-default"><i class="fa fa-edit"></i> Editar necesidad</a>
+              <div class="btn btn-group">
+                <a href="#/necesidad/{{::DetalleCtrl.necesidad.id}}/editar"
+                  ng-if="app.user.id == DetalleCtrl.necesidad.userId"
+                  class="btn btn-default"><i class="fa fa-edit"></i> Editar necesidad</a>
+                <a href="#/usuario/{{::DetalleCtrl.necesidad.user.id}}" class="btn btn-default">
+                   Ver perfil de {{::DetalleCtrl.necesidad.user.name}}
+                </a>
+                <a
+                  href="#/categoria/{{DetalleCtrl.necesidad.categoria.clave}}" class="btn btn-default">
+                   Categoría: {{::DetalleCtrl.necesidad.categoria.titulo}}
+                </a>
               </div>
             </p>
 
             <hr>
 
             <div class="row">
-              <div class="col-sm-4" ng-if="DetalleCtrl.necesidad.createdAt">
-                <strong>Fecha:</strong> {{::DetalleCtrl.necesidad.createdAt|date:'dd/MM/yyyy'}}
-              </div>
-              <div class="col-sm-6">
-                <strong>Usuario:</strong>
-                <a href="#/usuario/{{::DetalleCtrl.necesidad.user.id}}" class="btn btn-default">
-                  {{::DetalleCtrl.necesidad.user.name}}
-                </a>
-              </div>
+
               <div class="col-sm-12">
-                <hr>
-                <strong>Información adicional:</strong>
+                <p ng-if="DetalleCtrl.necesidad.createdAt">
+                  <strong>Fecha:</strong> {{::DetalleCtrl.necesidad.createdAt|date:'dd/MM/yyyy'}}
+                </p>
                 <p>
+                  <strong>Información adicional:</strong>
                   {{DetalleCtrl.necesidad.descripcion}}
                 </p>
               </div>

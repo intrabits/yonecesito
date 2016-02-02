@@ -4,6 +4,8 @@ var sanitizer = require('sanitizer');
 var nark = require('./../../config').nark;
 var bcrypt = require('bcryptjs');
 var Promise = require('bluebird');
+var Necesidad = require('./../necesidad/necesidad.model');
+var Comentario = require('./../necesidad/comentario/comentario.model');
 // var passport = require('passport');
 
 Promise.promisifyAll(bcrypt);
@@ -30,6 +32,12 @@ exports.update = function  (req,res) {
 
   User.findById(req.user.id)
     .then(function  (u) {
+
+      // Evitar que alguien se ponga permisos de administrador
+      if (req.body.type === 'admin') {
+        req.body.type = 'usuario';
+      }
+
       var data = {
         name:sanitizer.sanitize( req.body.name ),
         surname:sanitizer.sanitize( req.body.surname ),
@@ -57,16 +65,47 @@ exports.update = function  (req,res) {
  */
 exports.show = function (req, res, next) {
 
-  console.log('Cargando perfil de usuario de ',req.params.id);
+  User.findOne({
+    where:{ id:req.params.id },
+    raw:true,
+    attributes:['id','picture','name','surname','email','facebook','type','details','website','address','lastLogin']
+  })
+    .then(function (profile) {
 
-  User.findOne({where:{id:req.params.id},attributes:['name','surname','email','type','phone']})
-    .then(function (data) {
+      console.log(`Cargando perfil de usuario de ${profile.name}`);
 
-      res.json(data);
+      return Necesidad.findAll({
+          where:{
+            userId:profile.id
+          },
+          raw:true
+        }).then(function (necesidades) {
+          profile.necesidades = necesidades;
+          console.log(`Necesidades ${necesidades.length}`);
+          return profile;
+        });
+
+    })
+    .then(function (profile) {
+
+      return Comentario.findAll({
+          where:{
+            userId:profile.id
+          },
+          raw:true
+        }).then(function (data) {
+          profile.comentarios = data;
+          console.log(`Comentarios ${data.length}`);
+          return profile;
+        });
+
+    })
+    .then(function (profile) {
+      res.json(profile);
     })
     .catch(function (err) {
       console.error(err);
-      res.status(500).send('Error al cargar el perfil del usuario');
+      res.status(500).send('Error al cargar perfil de usuario');
     });
 };
 
@@ -104,7 +143,10 @@ exports.me = function(req, res, next) {
   //   email: req.user.email
   // };
 
-  User.findById(req.user.id)
+  User.findOne({
+    where:{ id:req.user.id },
+    attributes:['id','name','surname','email','facebook','type','details','website','address','lastLogin']
+  })
     .then(function (profile) {
       profile.lastLogin = new Date();
       res.json(profile);

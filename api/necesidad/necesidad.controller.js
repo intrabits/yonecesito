@@ -64,10 +64,24 @@ exports.update = function (req,res) {
   }
 
   console.log(req.user.name, ' está actualizando una necesidad'.yellow);
-  Necesidad.findOne({where:{
-    id:req.params.id,
-    userId:req.user.id  // comprobamos que sea el dueño :)
-  }})
+
+  var where;
+
+  // solo se puede editar una necesidad si el usuario es un administrador o es el dueño de la necesidad
+  if (req.user && req.user.type === 'admin') {
+    // admin
+    where = { id: req.params.id };
+  } else {
+    // dueño
+    where = {
+      id:req.params.id,
+      userId:req.user.id
+    };
+  }
+
+  Necesidad.findOne({
+    where:where
+  })
     .then(function (data) {
 
       data.titulo = req.body.titulo;
@@ -186,8 +200,23 @@ exports.upload = function (req,res) {
 
 exports.delete = function (req,res) {
 
+  var where;
 
-  Necesidad.destroy({where:{id:req.params.id,userId:req.user.id}})
+  // solo se puede eliminar una necesidad si el usuario es un administrador o es el dueño de la necesidad
+  if (req.user && req.user.type === 'admin') {
+    // admin
+    where = { id: req.params.id };
+  } else {
+    // dueño
+    where = {
+      id:req.params.id,
+      userId:req.user.id
+    };
+  }
+
+  Necesidad.destroy({
+    where:where
+    })
     .then(function (data) {
       console.log('Eliminando necesidad'.yellow);
       res.send('Necesidad eliminada correctamente');

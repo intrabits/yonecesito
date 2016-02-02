@@ -3,6 +3,7 @@ var gulp = require('gulp'),
   uglify = require('gulp-uglify'),
   watch = require('gulp-watch'),
   nodemon = require('gulp-nodemon'),
+  colors = require('colors'),
   sourcemaps = require('gulp-sourcemaps'),
   ngAnnotate = require('gulp-ng-annotate'),
   browserSync = require('browser-sync');
@@ -34,7 +35,8 @@ gulp.task('default', function () {
     .pipe(concat('build.js'))
     .pipe(uglify())
     .on('error',function (err) {
-      console.log('Opsie');
+      console.error('Opsie'.red);
+      console.error(err)
     })
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/js/'));

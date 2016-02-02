@@ -1,0 +1,42 @@
+<div ui-content-for="title">
+  <span>Comentarios</span>
+</div>
+
+<div class="scrollable">
+  <div class="scrollable-content">
+    <div class="section">
+
+      <div class="panel panel-body">
+        <p>
+          <input type="text" class="form-control" placeholder="Buscar necesidad..." ng-model="searchCome">
+        </p>
+        <br>
+        <table class="table table-striped">
+          <head>
+            <tr>
+              <th>Comentario</th>
+              <th>Fecha</th>
+              <th>Necesidad</th>
+              <th>Usuario</th>
+              <th>Operaciones</th>
+            </tr>
+          </head>
+          <tbody>
+            <tr ng-repeat="comentario in ctrl.comentarios|filter:searchCome">
+              <td>{{::comentario.texto}}</td>
+              <td>{{::comentario.createdAt|date:'dd/MM/yyyy'}}</td>
+              <td>{{::comentario.necesidadId}}</td>
+              <td>{{::comentario.userId}}</td>
+              <td>
+                <button class="btn btn-danger" ng-click="ctrl.delete(comentario.id)">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
