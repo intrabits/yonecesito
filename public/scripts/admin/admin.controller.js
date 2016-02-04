@@ -5,6 +5,7 @@
       'app.admin.users',
       'app.admin.necesidades',
       'app.admin.comentarios',
-      'app.admin.dashboard'
+      'app.admin.dashboard',
+      'app.admin.service'
     ]);
 })();

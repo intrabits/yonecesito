@@ -53,6 +53,14 @@
             </div>
           </div>
           <br>
+          <div class="row">
+            <div class="col-md-4">{{ConfigCtrl.user.type=='empresa'?'Logotipo':'Foto de perfil'}}</div>
+            <div class="col-md-5">
+              <img src="{{ConfigCtrl.user.picture}}" alt="">
+              <input type="file" name="file" id="file_input" onchange="angular.element(this).scope().upload(this.files)"/>
+            </div>
+          </div>
+          <br>
           <div class="row" ng-if="ConfigCtrl.user.type=='empresa'">
             <div class="col-md-4">Teléfono</div>
             <div class="col-md-5">

@@ -1,10 +1,18 @@
 var Comentario = require('./comentario.model');
 var Necesidad = require('./../necesidad.model');
+var db = require('./../../../config').sequelize;
+
 
 exports.all = function (req,res) {
 
-  Comentario.findAll({raw:true})
+  // Comentario.findAll({raw:true})
+  db.query(`SELECT comentario.*,user.name,necesidad.titulo FROM comentario
+    INNER JOIN user on user.id = comentario.userId
+    INNER JOIN necesidad on necesidad.id = comentario.necesidadId
+    ORDER BY createdAt DESC
+    `)
     .then(function (data) {
+      data = data[0];
       console.log(`Cargando todos los comentarios, ${data.length} encontrados`);
       res.json(data);
     })
@@ -38,6 +46,8 @@ exports.create = function (req,res) {
 // jshint ignore:start
 exports.util = async  function (req,res) {
 
+  console.log('Marcando comentario como útil/inútil')
+
   console.log(req.user.name,' está marcando el comentario ',req.params.id,' como útil');
   try {
     let comentario = await Comentario.findOne({where:{id:req.params.id}});
@@ -62,6 +72,7 @@ exports.util = async  function (req,res) {
 exports.delete = function (req,res) {
   // TODO el dueño de la necesidad también debe de pode eliminar el comentario
 
+  console.log('Eliminando comentario')
   var where;
   // solo se puede eliminar un comentario si el usuario es un administrador o es el dueño de la necesidad
   if (req.user && req.user.type === 'admin') {
@@ -82,5 +93,35 @@ exports.delete = function (req,res) {
     .catch(function (err) {
       console.error(err);
       res.status(500).send('Error al eliminar el comentario');
+    });
+};
+
+exports.update = function (req,res) {
+
+  console.log('Actualizando comentario')
+  var where;
+  // solo se puede eliminar un comentario si el usuario es un administrador o es el dueño de la necesidad
+  if (req.user && req.user.type === 'admin') {
+    // admin
+    where = { id: req.params.id };
+  } else {
+    // dueño
+    where = {
+      id:req.params.id,
+      userId:req.user.id
+    };
+  }
+
+  Comentario.findById(req.params.id)
+    .then(function (data) {
+      data.texto = req.body.texto
+      data.save();
+    })
+    .then(value => {
+      res.json('Comentario actualizado');
+    })
+    .catch(function (err) {
+      console.error(err)
+      res.status(500).send('Error al actualizar el comentario');
     });
 };

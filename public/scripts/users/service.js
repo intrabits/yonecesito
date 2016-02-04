@@ -16,6 +16,13 @@
               url:'/api/users/profile'
             });
           },
+          upload:function (fd) {
+            return $http.post('/api/users/upload', fd, {
+              withCredentials: true,
+              headers: {'Content-Type': undefined },
+              transformRequest: angular.identity
+            });
+          },
           subscribe:function (data) {
             return $http({
               method:'POST',

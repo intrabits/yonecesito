@@ -37,7 +37,7 @@
               ngNotify.set(data,'success');
               vm.Comentario.createdAt = new Date();
               vm.necesidad.comentarios.push(vm.Comentario);
-              vm.Comentario = {};              
+              vm.Comentario = {};
             })
             .error(function (err) {
               ngNotify.set(err,'error');
@@ -72,8 +72,7 @@
 
         $scope.upload = function(files) {
           console.log('Subiendo archivo');
-          var fd = new FormData();
-          //Take the first selected file
+          var fd = new FormData();          
 
           if (files[0]) {
             fd.append("file", files[0]);
@@ -88,8 +87,6 @@
                 ngNotify.set(err,'error');
               });
           }
-
-
         };
 
 

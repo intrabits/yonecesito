@@ -10,6 +10,9 @@ router.get('/',ComentarioCtrl.all);
 // Toggle entre util e inútil
 router.patch('/:id',auth.isLogged,ComentarioCtrl.util);
 
+// Actualizar comentario
+router.put('/:id',auth.isLogged,ComentarioCtrl.update);
+
 router.delete('/:id',auth.isLogged,ComentarioCtrl.delete);
 
 module.exports = router;

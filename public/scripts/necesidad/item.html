@@ -16,7 +16,11 @@
         ui-show="myDropdown{{necesidad.id}}"
         ui-turn-off="myDropdown{{necesidad.id}}">
 
-        <li><a href="#/usuario/{{::necesidad.user.id}}">Ver perfil de {{::necesidad.user.name}}</a></li>
+        <li><a href="#/usuario/{{::necesidad.userId}}">
+          <span ng-if="necesidad.user">Ver perfil de {{::necesidad.user.name}}</span>
+          <span ng-if="!necesidad.user">Ver perfil del usuario</span>
+
+        </a></li>
         <li><a>Guardar en favoritos</a></li>
         <li class="divider"></li>
         <li><a>Reportar necesidad</a></li>

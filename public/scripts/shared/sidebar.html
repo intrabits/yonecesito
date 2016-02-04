@@ -4,15 +4,25 @@
   </h1>
   <div class="scrollable-content">
     <div class="list-group" ui-turn-off='uiSidebarLeft'>
-      <a class="list-group-item" href="#/">Inicio <i class="fa fa-home pull-right"></i></a>
-      <a class="list-group-item" href="#/admin" ng-if="app.user.type=='admin'">Panel de administración <i class="fa fa-dashboard pull-right"></i></a>
-      <a class="list-group-item" href="#/categoria/productos">Productos <i class="fa fa-chevron-right pull-right"></i></a>
-      <a class="list-group-item" href="#/categoria/servicios">Servicios <i class="fa fa-chevron-right pull-right"></i></a>
-      <a class="list-group-item" href="#/categoria/otras">Otras necesidades <i class="fa fa-chevron-right pull-right"></i></a>
+      <a class="list-group-item" href="#/">
+        <i class="fa fa-home"></i> Inicio
+      </a>
+      <a class="list-group-item" href="#/admin" ng-if="app.user.type=='admin'">
+        <i class="fa fa-dashboard"></i> Panel de administración
+      </a>
+      <a class="list-group-item" href="#/categoria/productos">
+        <i class="fa fa-chevron-right"></i> Productos
+      </a>
+      <a class="list-group-item" href="#/categoria/servicios">
+        <i class="fa fa-chevron-right"></i> Servicios</a>
+      <a class="list-group-item" href="#/categoria/otras">
+        <i class="fa fa-chevron-right"></i> Otras necesidades </a>
       <a class="list-group-item" href="#/perfil" ng-if="app.user.id">
-        Configuración <i class="fa fa-cogs pull-right"></i></a>
-      <a class="list-group-item" href="#/contacto">Acerca de <i class="fa fa-comment-o pull-right"></i></a>
-      <a class="list-group-item" href="/logout" ng-if="app.user.id">Cerrar sesión <i class="fa fa-logout pull-right"></i></a>
+        <i class="fa fa-cogs"></i> Configuración </a>
+      <a class="list-group-item" href="#/contacto">
+        <i class="fa fa-comment"></i> Acerca de </a>
+      <a class="list-group-item" href="/logout" ng-if="app.user.id">
+        <i class="fa fa-sign-out"></i> Cerrar sesión </a>
       <div style="padding:10px" ng-if="app.user.id">
 
         <button type="button" class="btn btn-default form-control" ng-click="app.palabrasClave()">

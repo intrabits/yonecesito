@@ -9,7 +9,7 @@
   "newcap": true,
   "noarg": true,
   "undef": true,
-  "predef": ["angular","window","alert","prompt","navigator"],
+  "predef": ["angular","window","alert","prompt","navigator","confirm"],
   "smarttabs": true,
   "asi": true,
   "debug": true

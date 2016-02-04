@@ -1,4 +1,5 @@
 /config/config.json
 /node_modules
+/public/users/
 /public/necesidades/full/
 /public/necesidades/thumbs/

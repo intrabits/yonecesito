@@ -4,6 +4,7 @@ var Comentario = require('./../necesidad/comentario/comentario.model');
 
 exports.users = function (req,res) {
 
+  console.log('Cargando todos los usuarios')
   User.findAll({
     attributes:['id','name','details','type']
   })
@@ -19,21 +20,33 @@ exports.users = function (req,res) {
 
 exports.dash = function (req,res) {
 
-  var result = {};
 
+  console.log('Cargando dashboard del panel de administración')
   var show = {
     order:'id DESC',
-    limit:10
+    limit:5,
+    raw:true
   };
 
   Comentario.findAll(show)
     .then(function (data) {
+
+      var result = {};
       result.comentarios = data;
       return Necesidad.findAll(show)
         .then((necesidades)=>{
             result.necesidades = necesidades;
             return result;
         })
+    })
+    .then(function (result) {
+
+      return User.findAll(show)
+        .then(function (users) {
+          result.users = users;
+          return result;
+        });
+
     })
     .then(function (data) {
       res.json(data);
@@ -46,6 +59,8 @@ exports.dash = function (req,res) {
 };
 
 exports.necesidades = function (req,res) {
+
+  console.log('Cargando todas las necesidades')
 
   Necesidad.findAll({})
     .then(function (data) {
@@ -60,6 +75,7 @@ exports.necesidades = function (req,res) {
 
 exports.comentarios = function (req,res) {
 
+  console.log('Cargando todos los comentarios')
   Comentario.findAll({})
     .then(function (data) {
       res.json(data);
