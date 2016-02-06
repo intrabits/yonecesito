@@ -4,6 +4,7 @@
   "log_date_format"  : "YYYY-MM-DD HH:mm Z",
   "ignoreWatch" : [ "node_modules","public"],
   "watch"       : false,
+  "max_memory_restart": "145M",
   "env": {
         "NODE_ENV": "production"
     }

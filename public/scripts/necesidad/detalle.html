@@ -1,5 +1,11 @@
 <div ui-content-for="title">
-  <span><a href="#/">Inicio</a> > <a href="#/categoria/{{DetalleCtrl.necesidad.categoria.clave}}">{{DetalleCtrl.necesidad.categoria.titulo}}</a></span>
+  <span>
+    <a href="#/">Inicio</a>
+    <i class="fa fa-chevron-right"></i>
+    <a href="#/categoria/{{DetalleCtrl.necesidad.categoria.clave}}">
+      {{DetalleCtrl.necesidad.categoria.titulo}}
+    </a>
+  </span>
 </div>
 
 <div class="scrollable section" ng-if="DetalleCtrl.necesidad" >
@@ -9,12 +15,12 @@
       <div class="list-group-item list-group-item-home">
 
         <div class="row">
-          <div class="col-md-5" >
+          <div class="col-md-4" >
             <img ng-if="DetalleCtrl.necesidad.foto" ng-src="{{::DetalleCtrl.necesidad.foto}}" alt="">
             <div ng-if="!DetalleCtrl.necesidad.foto" class="no-image-big"></div>
 
           </div>
-          <div class="col-md-7">
+          <div class="col-md-8">
 
             <h1>
               {{DetalleCtrl.necesidad.titulo}}
@@ -24,12 +30,14 @@
               <div class="btn btn-group">
                 <a href="#/necesidad/{{::DetalleCtrl.necesidad.id}}/editar"
                   ng-if="app.user.id == DetalleCtrl.necesidad.userId"
-                  class="btn btn-default"><i class="fa fa-edit"></i> Editar necesidad</a>
-                <a href="#/usuario/{{::DetalleCtrl.necesidad.user.id}}" class="btn btn-default">
+                  class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Editar necesidad</a>
+                <a href="#/usuario/{{::DetalleCtrl.necesidad.user.id}}"
+                  class="btn btn-default  btn-sm">
                    Ver perfil de {{::DetalleCtrl.necesidad.user.name}}
                 </a>
                 <a
-                  href="#/categoria/{{DetalleCtrl.necesidad.categoria.clave}}" class="btn btn-default">
+                  href="#/categoria/{{DetalleCtrl.necesidad.categoria.clave}}"
+                  class="btn btn-default btn-sm">
                    Categoría: {{::DetalleCtrl.necesidad.categoria.titulo}}
                 </a>
               </div>
