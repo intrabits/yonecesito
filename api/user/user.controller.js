@@ -13,6 +13,21 @@ var _ = require('lodash');
 
 Promise.promisifyAll(bcrypt);
 
+exports.create = function (req,res) {
+  console.log('Usuario se está registrando :)');
+  console.log(req.body);
+
+  User.create(req.body)
+    .then(function (data) {
+      res.send('Cuenta creada correctamente');
+    })
+    .catch(function (err) {
+      console.error(err)
+      res.status(500).send('Error al crear la cuenta');
+    });
+};
+
+
 /**
  * Get list of users
  * restriction: 'admin'

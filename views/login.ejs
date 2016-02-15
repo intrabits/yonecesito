@@ -22,18 +22,18 @@
               <% } %>
 
                 <div class="row" style="margin:20px">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <a href="/auth/facebook" class="btn btn-primary form-control">
                       <i class="fa fa-facebook"></i>
                       facebook
                     </a>
                   </div>
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
                     <a href="/auth/google" class="btn btn-danger form-control">
                       <i class="fa fa-google"></i>
                       google
                     </a>
-                  </div>
+                  </div> -->
                 </div>
                 <br>
                 <div id="loginForm">
@@ -48,10 +48,10 @@
 
                 <div id="registroForm">
                   <form class="form-signin" action="/login" method="POST">
-                    <input type="text"  name="user_email" class="form-control" placeholder="Email" required autofocus>
-                    <input type="text"  name="user_email" class="form-control" placeholder="Nombre de usuario" required >
-                    <input type="password" name="user_password" class="form-control" placeholder="Password" required>
-                    <input type="submit" class="btn btn-lg btn-default btn-block" value="Crear cuenta" />
+                    <input type="text"  id="email" class="form-control" placeholder="Email" required autofocus>
+                    <input type="text"  id="name" class="form-control" placeholder="Nombre de usuario" required >
+                    <input type="password" id="password" class="form-control" placeholder="Password" required>
+                    <a class="btn btn-lg btn-default btn-block" onclick="crearCuenta()">Crear cuenta</a>
                     <a href="javascript:;" onclick="toggleLogin()" class="btn btn-lg btn-default btn-block">Inicia sesión</a>
                   </form>
                 </div>
@@ -165,6 +165,23 @@
   function toggleLogin() {
     $('#registroForm').slideToggle();
     $('#loginForm').slideToggle();
+  }
+  function crearCuenta() {
+    $.ajax({
+      url:'/api/user'
+      data:{
+        name:$('#name').val(),
+        email:$('#email').val(),
+        password:$('#password').val(),
+      }
+    })
+    .done(function () {
+      window.location = '/#/';
+    })
+    .fail(function (err) {
+      swal('Error',err,'error');
+    });
+
   }
 </script>
 <% include footer %>

@@ -9,9 +9,6 @@ exports.sequelize = new Sequelize(config.db.database,config.db.user,config.db.pa
   dialect:config.db.dialect
 });
 
-
-
-
 exports.nark = Nark.config({
   // reportTo:'cedric@intrabits.net',
   // mailSettings:{
@@ -29,8 +26,7 @@ exports.nark = Nark.config({
   // }
 });
 
-
 // exports.connection = connection;
 exports.port = config.port;
 exports.domain = config.domain;
-exports.cryptKey    = config.cryptKey;
+exports.cryptKey = config.cryptKey;
