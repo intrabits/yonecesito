@@ -49,8 +49,8 @@
             ui-track-as-search-param='true'
             class="sidebar sidebar-left"></div>
 
-    <!-- <div ng-include="'scripts/shared/sidebarRight.html'"
-            class="sidebar sidebar-right"></div> -->
+    <div ng-include="'scripts/shared/sidebarRight.html'"
+            class="sidebar sidebar-right"></div>
 
     <div class="app"
          ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
@@ -69,7 +69,8 @@
         </div>
 
         <div class="btn-group pull-right" ui-yield-to="navbarAction" ng-if="app.user.id">
-          <a href="#/perfil" class="btn">{{app.user.name}}</a>
+          <a  class="btn" ui-toggle="uiSidebarRight">{{app.user.name}}</a>
+          <!-- href="#/perfil" -->
         </div>
         <div class="btn-group pull-right" ui-yield-to="navbarAction" ng-if="!app.user.id">
           <!-- <div ui-toggle="uiSidebarRight" class="btn">

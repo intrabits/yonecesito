@@ -12,6 +12,12 @@
       User.me()
         .success(function (data) {
           vm.user = data;
+          console.log(data)
+
+          User.show(data.id)
+            .success(function (data) {
+              vm.user.necesidades = data.necesidades;
+            })
         })
         .error(function (err) {
           console.log(err);
