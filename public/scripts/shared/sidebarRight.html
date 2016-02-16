@@ -17,7 +17,11 @@
       <h3 align="center">Mis necesidades</h3>
 
       <ul class="list-group">
-        <a ng-repeat="n in app.user.necesidades" class="list-group-item" href="#/necesidad/{{n.id}}">{{n.titulo}}</a>
+        <a ng-repeat="n in app.user.necesidades" class="list-group-item" href="#/necesidad/{{n.id}}">
+          <i class="fa fa-chevron-right"></i> {{n.titulo}}</a>
+        <a href="#/" class="list-group-item">
+          <i class="fa fa-plus"></i>
+          Dar de alta una nueva necesidad</a>
       </ul>
 
   </div>

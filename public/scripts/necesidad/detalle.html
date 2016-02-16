@@ -97,6 +97,7 @@
       <div class="panel-heading" style="min-height:50px">
         <div class="pull-right">
           <a href="javascript:;"
+            ng-if="DetalleCtrl.necesidad.userId==app.user.id"
             ng-hide="comentario.util"
             ng-click="DetalleCtrl.util(comentario)" class='btn btn-primary'>
             !Esto es lo que necesito!
