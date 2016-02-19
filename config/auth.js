@@ -142,8 +142,32 @@ passport.use(new TwitterStrategy({
   },
   function(token, tokenSecret, profile, cb) {
     console.log('Alguien se está logueando con Twitter');
-    console.log(profile)
-    cb(profile)
+    console.log(profile);
+    var where = {
+      where: {
+        twitter:profile.id
+      },
+      attributes:{}
+    }
+    User.findOne(where)
+      .then(function (data) {
+        if (data && data.twitter) {
+          data.lastLogin = new Date();
+          return data.save();
+        }
+
+        return User.create({
+          name: profile.displayName,
+          twitter: profile.id
+        });
+
+      })
+      .then(function (data) {
+        cb(null,data)
+      })
+      .catch(function (err) {
+        cb(err);
+      });    
   }
 ));
 
