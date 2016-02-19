@@ -3,7 +3,8 @@ var bcrypt = require('bcryptjs');
 var colors  = require('colors');
 var passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
-  FacebookStrategy = require('passport-facebook').Strategy;
+  FacebookStrategy = require('passport-facebook').Strategy,
+  TwitterStrategy = require('passport-twitter').Strategy;
 
 var User = require('./../api/user/user.model');
 var nark = require('./config').nark;
@@ -133,6 +134,19 @@ passport.use(new FacebookStrategy({
     });
   }
 ));
+
+passport.use(new TwitterStrategy({
+    consumerKey: config.twitter.key,
+    consumerSecret: config.twitter.secret,
+    callbackURL: config.twitter.callback
+  },
+  function(token, tokenSecret, profile, cb) {
+    console.log('Alguien se está logueando con Twitter');
+    console.log(profile)
+    cb(profile)
+  }
+));
+
 
 
 exports.ensureAuthenticated = function (req, res, next) {

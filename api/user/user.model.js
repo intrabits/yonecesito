@@ -16,7 +16,10 @@ var User = sequelize.define('user', {
     type: Sequelize.STRING
   },
   facebook:{
-    type: Sequelize.STRING(30)
+    type: Sequelize.STRING(40)
+  },
+  twitter:{
+    type: Sequelize.STRING(40)
   },
   type:{
     type: Sequelize.STRING(20) // usuario, empresa
