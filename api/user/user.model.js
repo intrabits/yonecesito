@@ -21,11 +21,16 @@ var User = sequelize.define('user', {
   twitter:{
     type: Sequelize.STRING(40)
   },
-  type:{
-    type: Sequelize.STRING(20) // usuario, empresa
+  google:{
+    type: Sequelize.STRING(40)
   },
+  // usuario, empresa
+  type:{
+    type: Sequelize.STRING(20)
+  },
+  // información adicional sobre la persona o negocio
   details:{
-    type: Sequelize.STRING // información adicional sobre la persona o negocio
+    type: Sequelize.STRING
   },
   picture:{
     type: Sequelize.STRING(120)
@@ -38,6 +43,10 @@ var User = sequelize.define('user', {
   },
   address:{
     type: Sequelize.STRING(170)
+  },
+  // información pública proveniente de las redes sociales
+  data:{
+    type: Sequelize.TEXT
   },
   lastLogin: {
     type: Sequelize.DATE,

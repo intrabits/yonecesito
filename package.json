@@ -27,6 +27,7 @@
     "nark": "0.1.1",
     "passport": "^0.2.1",
     "passport-facebook": "^1.0.3",
+    "passport-google-oauth20": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
     "password-generator": "^0.2.2",

@@ -4,7 +4,8 @@ var colors  = require('colors');
 var passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
   FacebookStrategy = require('passport-facebook').Strategy,
-  TwitterStrategy = require('passport-twitter').Strategy;
+  TwitterStrategy = require('passport-twitter').Strategy,
+  GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 var User = require('./../api/user/user.model');
 var nark = require('./config').nark;
@@ -119,7 +120,8 @@ passport.use(new FacebookStrategy({
             surname : profile.name.familyName,
             name    : nombre,
             email   : userEmail,
-            facebook : profile.id
+            facebook : profile.id,
+            data: JSON.stringify(profile)
           };
           user = await User.create(datos);
           done(null,user);
@@ -158,7 +160,9 @@ passport.use(new TwitterStrategy({
 
         return User.create({
           name: profile.displayName,
-          twitter: profile.id
+          twitter: profile.id,
+          email:profile.email,
+          data: JSON.stringify(profile)
         });
 
       })
@@ -167,10 +171,47 @@ passport.use(new TwitterStrategy({
       })
       .catch(function (err) {
         cb(err);
-      });    
+      });
   }
 ));
 
+passport.use(new GoogleStrategy({
+    clientID: config.google.id,
+    clientSecret: config.google.secret,
+    callbackURL: config.google.callback
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    console.log('Alguien se está logueando con Google');
+    console.log(profile);
+    var where = {
+      where: {
+        google:profile.id
+      },
+      attributes:{}
+    }
+    User.findOne(where)
+      .then(function (data) {
+        if (data && data.twitter) {
+          data.lastLogin = new Date();
+          return data.save();
+        }
+
+        return User.create({
+          name: profile.displayName,
+          google: profile.id,
+          email:profile.email,
+          data: JSON.stringify(profile)
+        });
+
+      })
+      .then(function (data) {
+        cb(null,data)
+      })
+      .catch(function (err) {
+        cb(err);
+      });
+  }
+));
 
 
 exports.ensureAuthenticated = function (req, res, next) {
