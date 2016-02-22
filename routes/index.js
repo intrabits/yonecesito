@@ -15,10 +15,6 @@ router.get('/',function (req,res) {
   res.render('index');
 });
 
-router.get('/app', auth.ensureAuthenticated, function(req, res){
-  res.render('app');
-});
-
 router.get('/login', function(req, res){
 
   if (typeof req.query.err!=='undefined') {

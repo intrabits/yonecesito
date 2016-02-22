@@ -2,17 +2,19 @@
   'use strict';
   angular
     .module('app.necesidad.detalle',[])
-      .controller('NecesidadDetalleCtrl',['Necesidad','ngNotify','$routeParams','$window','Comentario','$scope','socket',function (Necesidad,ngNotify,$routeParams,$window,Comentario,$scope,socket) {
+      .controller('NecesidadDetalleCtrl',['Necesidad','ngNotify','$routeParams','$window','Comentario','$scope','socket','$rootScope',function (Necesidad,ngNotify,$routeParams,$window,Comentario,$scope,socket,$rootScope) {
 
         var vm = this;
         vm.necesidad = {};
         vm.Comentario = {};
+
 
         if ($routeParams.id) {
           socket.log('Viendo una necesidad');
           Necesidad.show($routeParams.id)
             .success(function (data) {
               vm.necesidad = data;
+              $rootScope.title = data.titulo;
             })
             .error(function (err) {
               ngNotify.set(err,'error');
@@ -20,7 +22,7 @@
         }
 
         vm.save = function () {
-          socket.emit('users:logs',{log:'está editando una necesidad :)'})
+          socket.log('editando una necesidad');
           Necesidad.update(vm.necesidad)
             .success(function (data) {
               ngNotify.set(data,'success');
@@ -33,7 +35,7 @@
         vm.comentar = function () {
 
           vm.ComentarioForm.necesidadId = vm.necesidad.id;
-
+          socket.log('comentando una necesidad');
           Comentario.create(vm.ComentarioForm)
             .success(function (data) {
               ngNotify.set(data,'success');
@@ -47,7 +49,7 @@
         };
 
         vm.delete = function () {
-          socket.emit('users:logs',{log:'está eliminando una necesidad :)'})
+          socket.log('eliminando una necesidad');
           var sure = confirm('Realmente deseas eliminar esta publicación?');
           if (sure) {
             Necesidad.delete(vm.necesidad.id)
@@ -62,7 +64,7 @@
         };
 
         vm.util = function (comentario) {
-
+          socket.log('marcando un comentario como "útil"');
           Comentario.util(comentario.id)
             .success(function (data) {
               comentario.util = true;
@@ -74,7 +76,7 @@
         };
 
         $scope.upload = function(files) {
-          console.log('Subiendo archivo');
+          socket.log('agregando foto a una necesidad');
           var fd = new FormData();
 
           if (files[0]) {

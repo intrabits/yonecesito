@@ -18,10 +18,6 @@ exports.register = function(socket) {
   });
 
 
-  socket.emit('users:logs',logs);
-
-  // setInterval(() => {
-  //   socket.emit('fuck',new Date());
-  // }, 2000);
+  socket.emit('users:logs',logs);  
 
 };

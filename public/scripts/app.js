@@ -19,7 +19,14 @@
     .run(['$transform',function($transform) {
       window.$transform = $transform;
     }])
-    .config(['$routeProvider',function ($routeProvider) {
+    .run(['$rootScope', function($rootScope) {
+
+      $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+        $rootScope.title = current.$$route.title;
+      });
+
+    }])
+    .config(['$routeProvider','$locationProvider',function ($routeProvider,$locationProvider) {
       $routeProvider
         .when('/', {
           templateUrl: 'scripts/home/scroll.html',
@@ -28,7 +35,7 @@
           controllerAs:'HomeCtrl'
         })
         .when('/busqueda', {
-          template: '<busqueda></busqueda>',          
+          template: '<busqueda></busqueda>',
         })
         .when('/necesidad/:id', {
           templateUrl: 'scripts/necesidad/views/detalle.html',
@@ -76,6 +83,9 @@
         .otherwise({
           redirectTo: '/'
         });
+
+        // $locationProvider.html5Mode(true);
+
     }]);
 
 })();
