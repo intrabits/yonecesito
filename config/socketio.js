@@ -21,6 +21,7 @@ function onConnect(socket) {
 
   // Insert sockets below
   require('../api/necesidad/necesidad.socket').register(socket);
+  require('../api/user/user.socket').register(socket);
 }
 
 module.exports = function (socketio) {

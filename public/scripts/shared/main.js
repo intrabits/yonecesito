@@ -16,7 +16,7 @@
         }
         socket.emit('necesidades:buscar',buscar);
         socket.on('necesidades:resultado',function (data) {
-          vm.resultados = data;          
+          vm.resultados = data;
         });
 
       };
@@ -26,6 +26,9 @@
       User.me()
         .success(function (data) {
           vm.user = data;
+          if (data) {
+            User.current = data;
+          }
           console.log(data)
 
           User.show(data.id)

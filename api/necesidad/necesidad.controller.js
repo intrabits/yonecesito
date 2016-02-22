@@ -104,6 +104,8 @@ exports.show = function (req,res) {
 
   Necesidad.findById(req.params.id)
     .then(function (data) {
+      data.visitas = data.visitas + 1;
+      data.save();
       data = data.dataValues;
       return Categoria.findById(data.categoriaId)
         .then(function (cat) {

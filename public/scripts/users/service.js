@@ -6,6 +6,7 @@
       .factory ('User', ['$http',function ($http) {
 
         return {
+          current:{},
           me:function () {
             return $http.get('/api/users/profile');
           },

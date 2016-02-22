@@ -21,6 +21,9 @@ var Necesidad = sequelize.define('necesidad', {
   categoriaId:{
     type: Sequelize.INTEGER,
   },
+  visitas:{
+    type: Sequelize.INTEGER,
+  },
   cubierta:{
     type: Sequelize.BOOLEAN // necesidad para la que ya se encontró proveedor, al quedar cubierta no seguirá apareciendo
   }

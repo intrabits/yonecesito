@@ -5,10 +5,7 @@
       .directive('busqueda',function () {
         return {
             restrict: 'E',
-            templateUrl: 'scripts/necesidad/views/busqueda.html',
-            // scope: {
-            //   resultados: '='
-            // },
+            templateUrl: 'scripts/necesidad/views/busqueda.html'            
           };
       });
 })();

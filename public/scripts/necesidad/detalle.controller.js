@@ -2,13 +2,14 @@
   'use strict';
   angular
     .module('app.necesidad.detalle',[])
-      .controller('NecesidadDetalleCtrl',['Necesidad','ngNotify','$routeParams','$window','Comentario','$scope',function (Necesidad,ngNotify,$routeParams,$window,Comentario,$scope) {
+      .controller('NecesidadDetalleCtrl',['Necesidad','ngNotify','$routeParams','$window','Comentario','$scope','socket',function (Necesidad,ngNotify,$routeParams,$window,Comentario,$scope,socket) {
 
         var vm = this;
         vm.necesidad = {};
         vm.Comentario = {};
 
         if ($routeParams.id) {
+          socket.log('Viendo una necesidad');
           Necesidad.show($routeParams.id)
             .success(function (data) {
               vm.necesidad = data;
@@ -19,6 +20,7 @@
         }
 
         vm.save = function () {
+          socket.emit('users:logs',{log:'está editando una necesidad :)'})
           Necesidad.update(vm.necesidad)
             .success(function (data) {
               ngNotify.set(data,'success');
@@ -45,6 +47,7 @@
         };
 
         vm.delete = function () {
+          socket.emit('users:logs',{log:'está eliminando una necesidad :)'})
           var sure = confirm('Realmente deseas eliminar esta publicación?');
           if (sure) {
             Necesidad.delete(vm.necesidad.id)
@@ -72,7 +75,7 @@
 
         $scope.upload = function(files) {
           console.log('Subiendo archivo');
-          var fd = new FormData();          
+          var fd = new FormData();
 
           if (files[0]) {
             fd.append("file", files[0]);

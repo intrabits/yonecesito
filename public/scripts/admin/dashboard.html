@@ -61,23 +61,39 @@
         <div class="col-md-6">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Links</h3>
+              <h3 class="panel-title">Actividad de los usuarios</h3>
             </div>
             <ul class="list-group">
-              <a class="list-group-item" href="https://webmail.webfaction.com/">
-                <i class="fa fa-envelope"></i> Correos electrónicos personalizados
-              </a>
-              <a class="list-group-item" href="https://www.google.com/analytics/web/?hl=es&pli=1#report/visitors-overview/a34193136w84670524p87763930/">
-                <i class="fa fa-line-chart"></i> Estadísticas de google
-              </a>
-              <a class="list-group-item" href="mail:cedric.luckie@gmail.com">
-                <i class="fa fa-life-ring"></i> Soporte
+              <a class="list-group-item" ng-repeat="log in ctrl.logs">
+                <span class="btn btn-xs btn-info">{{log.date|date:'hh:mm:ss'}}</span>
+                <span class="btn btn-xs btn-success">{{log.user.name}}</span>
+                 {{log.log}}
               </a>
             </ul>
           </div>
+        </div>
 
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Links</h3>
+          </div>
+          <ul class="list-group">
+            <a class="list-group-item" href="https://webmail.webfaction.com/">
+              <i class="fa fa-envelope"></i> Correos electrónicos personalizados
+            </a>
+            <a class="list-group-item" href="https://www.google.com/analytics/web/?hl=es&pli=1#report/visitors-overview/a34193136w84670524p87763930/">
+              <i class="fa fa-line-chart"></i> Estadísticas de google
+            </a>
+            <a class="list-group-item" href="mail:cedric.luckie@gmail.com">
+              <i class="fa fa-life-ring"></i> Soporte
+            </a>
+          </ul>
+        </div>
       </div>
-
     </div>
 
   </div>
