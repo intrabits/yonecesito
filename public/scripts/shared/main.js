@@ -11,12 +11,12 @@
 
 
       vm.buscar = function (buscar) {
-        if (buscar.length<3) {
+        if (buscar.length<1) {
           return ;
         }
         socket.emit('necesidades:buscar',buscar);
         socket.on('necesidades:resultado',function (data) {
-          vm.resultados = data;
+          vm.resultados = data;          
         });
 
       };

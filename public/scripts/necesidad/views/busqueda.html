@@ -2,9 +2,18 @@
   <div class="scrollable-content">
 
     <div class="section">
-      <h2>asdf</h2>
+      <br>
       <hr>
-      <h1>Resultados {{app.resultados.length}}</h1>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>
+            Necesidades encontradas: {{app.resultados.length}}
+            <div id="hideMe">              
+              <i class="fa fa-spinner fa-spin" ng-if="loading"></i>
+            </div>
+          </h2>
+        </div>
+      </div>
       <div  ng-repeat="necesidad in app.resultados" ng-click="app.resultados=undefined">
           <necesidad-item necesidad="necesidad.original"></necesidad-item>
       </div>

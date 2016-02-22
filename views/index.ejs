@@ -80,9 +80,13 @@
         </div>
 
         <div class="btn-group">
-          <input type="text" ng-model="search" class="form-control" ng-change="app.buscar(search)">
-          {{app.resultados.length}}
+          <input type="text"
+            ng-model="search"
+            class="form-control input-search"
+            placeholder="Buscar necesidad"
+            ng-change="app.buscar(search)">
         </div>
+
 
         <div class="btn-group pull-right" ui-yield-to="navbarAction" ng-if="app.user.id">
           <a  class="btn" ui-toggle="uiSidebarRight">{{app.user.name}}</a>

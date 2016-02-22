@@ -24,6 +24,39 @@ h1 {
   margin:60px;
   font-size:32px
 }
+.input-search {
+  width:100%;
+  background-color:#efefef;
+  margin-top: 8px;
+}
+/*Cargando*/
+#hideMe {
+    -moz-animation: cssAnimation 0s ease-in 2s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 2s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 2s forwards;
+    /* Opera */
+    animation: cssAnimation 0s ease-in 2s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
+}
+
+
 .facebook{
   background-color:#0101DF!important;
   color:#fff!important;
