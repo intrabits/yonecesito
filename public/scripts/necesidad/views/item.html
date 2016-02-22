@@ -10,7 +10,7 @@
         ui-state="myDropdown{{necesidad.id}}"
 
         class="dropdown-menu"
-        ui-outer-click="Ui.turnOff('myDropdown' + necesidad.id)"
+        ui-outer-click-if="Ui.turnOff('myDropdown' + necesidad.id)"
         ui-outer-click-if="Ui.active('myDropdown' + necesidad.id)"
         role="menu"
         ui-show="myDropdown{{necesidad.id}}"
@@ -30,13 +30,13 @@
   </div>
   <div class="panel-body">
     <a ng-href="#/necesidad/{{::necesidad.id}}">
-      <div class="row">
-        <div class="col-xs-2">
+      <div class="row" ng-href="#/necesidad/{{::necesidad.id}}">
+        <div class="col-xs-3">
           <div class="no-image">
-            <img ng-src="{{::necesidad.thumb}}" width="75px"/>
+            <img ng-src="{{::necesidad.thumb}}" width="100%"/>
           </div>
         </div>
-        <div class="col-xs-10">
+        <div class="col-xs-9">
           <h4>{{::necesidad.titulo}}</h4>
           <p>
             {{::necesidad.descripcion||'Sin descripción'}}

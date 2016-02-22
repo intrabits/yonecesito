@@ -34,17 +34,11 @@ router.post('/login',
   passport.authenticate('local', { failureRedirect: '/login?err=1' }),
   function(req, res) {
     res.redirect('/');
-
   });
 
-// GET /auth/facebook
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request.  The first step in Facebook authentication will involve
-//   redirecting the user to facebook.com.  After authorization, Facebook will
-//   redirect the user back to this application at /auth/facebook/callback
-// router.get('/auth/facebook',passport.authenticate('facebook'));
+
 router.get('/auth/facebook',
-passport.authenticate('facebook', { scope: ['email']}) );
+  passport.authenticate('facebook', { scope: ['email']}) );
 
 
 router.get('/auth/facebook/callback',

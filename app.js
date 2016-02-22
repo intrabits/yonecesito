@@ -1,8 +1,15 @@
 require("babel/register");
 var config 	  = require('./config');
-var app    	  = require('./config/express').app;
+// var app    	  = require('./config/express');
+var app = require('express')();
 var colors 	  = require('colors');
-var nark = config.nark;
+
+var server = require('http').createServer(app);
+var socketio = require('socket.io')(server);
+
+// var socketio = require('socket.io')(server,{serveClient:true});
+require('./config/socketio')(socketio);
+require('./config/express')(app);
 
 //Rutas exclusivas que usaremos en node.js
 app.use('/', require('./routes/index'));
@@ -12,7 +19,7 @@ app.use('/api/', require('./routes/api'));
 
 // Errores más amigables en caso de cosas inesperado
 app.use(function(err, req, res, next) {
-  
+
   console.error(err);
     res.status(err.status || 500);
   res.render('error', {
@@ -21,5 +28,8 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(config.port);
-console.log(colors.blue('=========== Iniciando aplicación. Puerto '+config.port+' ============'));
+server.listen(config.port,function () {  
+  console.log(colors.blue('=========== Iniciando aplicación. Puerto '+config.port+' ============'));
+});
+
+exports = module.exports = app;

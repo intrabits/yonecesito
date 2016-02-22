@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="/css/sweetalert.css" />
     <link rel="stylesheet" href="/css/mobile.css" />
 
+    <!-- <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>   -->
+    <script src="socket.io/socket.io.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
@@ -69,29 +71,19 @@
           </div>
         </div>
 
+        <div class="btn-group">
+          <input type="text" ng-model="search" class="form-control" ng-change="app.buscar(search)">
+          {{app.resultados.length}}
+        </div>
+
         <div class="btn-group pull-right" ui-yield-to="navbarAction" ng-if="app.user.id">
           <a  class="btn" ui-toggle="uiSidebarRight">{{app.user.name}}</a>
           <!-- href="#/perfil" -->
         </div>
         <div class="btn-group pull-right" ui-yield-to="navbarAction" ng-if="!app.user.id">
-          <!-- <div ui-toggle="uiSidebarRight" class="btn">
-            <i class="fa fa-comment"></i> Chat
-          </div> -->
-          <!-- <div  class="btn btn-danger" ui-turn-on="modal1">
-             Publicar necesidad <i class="fa fa-comment"></i>
-          </div> -->
           <a class="btn" href="/login">
             Iniciar sesión
           </a>
-          <!-- <a href="/auth/facebook" class="btn btn-primary facebook">
-             <i class="fa fa-facebook"></i>
-          </a>
-          <a href="/auth/twitter" class="btn btn-primary twitter">
-             <i class="fa fa-twitter"></i>
-          </a>
-          <a href="/auth/google" class="btn btn-primary google">
-             <i class="fa fa-google"></i>
-          </a> -->
         </div>
       </div>
 
@@ -100,19 +92,18 @@
         <div ng-show="loading" class="app-content-loading">
           <i class="fa fa-spinner fa-spin loading-spinner"></i>
         </div>
-        <div class="app-content">
+        <busqueda ng-if="app.resultados"></busqueda>
+        <div class="app-content" ng-hide="app.resultados">
           <ng-view></ng-view>
         </div>
       </div>
 
     </div><!-- ~ .app -->
 
-    <div ui-yield-to="modals"></div>
-    <div ui-content-for="modals">
-      <div ng-include="'scripts/shared/login.html'"></div>
-    </div>
-  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/textAngular/1.4.6/textAngular.min.js"></script> -->
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.8.0/loading-bar.min.js"></script>
   <script src="/js/sweetalert.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
   </body>
 </html>

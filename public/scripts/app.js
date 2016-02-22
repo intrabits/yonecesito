@@ -5,9 +5,11 @@
     .module('app', [
       'ngRoute',
       'ngNotify',
+      'ui.bootstrap',
       'mobile-angular-ui',
       'angular-loading-bar',
       'mobile-angular-ui.gestures',
+      'app.socket',
       'app.necesidad',
       'app.admin',
       'app.home',
@@ -25,18 +27,21 @@
           controller:'HomeCtrl',
           controllerAs:'HomeCtrl'
         })
+        .when('/busqueda', {
+          template: '<busqueda></busqueda>',          
+        })
         .when('/necesidad/:id', {
-          templateUrl: 'scripts/necesidad/detalle.html',
+          templateUrl: 'scripts/necesidad/views/detalle.html',
           controller:'NecesidadDetalleCtrl',
           controllerAs:'DetalleCtrl'
         })
         .when('/necesidad/:id/editar', {
-          templateUrl: 'scripts/necesidad/editar.html',
+          templateUrl: 'scripts/necesidad/views/editar.html',
           controller:'NecesidadDetalleCtrl',
           controllerAs:'DetalleCtrl'
         })
         .when('/categoria/:categoria', {
-          templateUrl: 'scripts/necesidad/categoria.html',
+          templateUrl: 'scripts/necesidad/views/categoria.html',
           reloadOnSearch: false,
           controller:'CategoriaCtrl',
           controllerAs:'CategoriaCtrl'

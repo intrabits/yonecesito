@@ -8,6 +8,7 @@
       'app.necesidad.detalle',
       'app.necesidad.categoria',
       'app.necesidad.comentario',
+      'app.necesidad.busqueda',
       'app.comentario.service'
     ])
       .controller('NecesidadesCtrl',['Necesidad','ngNotify',function (Necesidad,ngNotify) {

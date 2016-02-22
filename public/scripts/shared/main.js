@@ -5,9 +5,23 @@
       'app.directives',
       'app.filters'
     ])
-    .controller('MainController',['$rootScope','$scope','User','ngNotify', function($rootScope, $scope, User, ngNotify){
+    .controller('MainController',['$rootScope','$scope','User','ngNotify','socket', function($rootScope, $scope, User, ngNotify,socket){
 
       var vm = this;
+
+
+      vm.buscar = function (buscar) {
+        if (buscar.length<3) {
+          return ;
+        }
+        socket.emit('necesidades:buscar',buscar);
+        socket.on('necesidades:resultado',function (data) {
+          vm.resultados = data;          
+        });
+
+      };
+
+
 
       User.me()
         .success(function (data) {

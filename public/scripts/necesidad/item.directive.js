@@ -5,7 +5,7 @@
       .directive('necesidadItem',function () {
         return {
             restrict: 'E',
-            templateUrl: 'scripts/necesidad/item.html',
+            templateUrl: 'scripts/necesidad/views/item.html',
             scope: {
               necesidad: '='
             },

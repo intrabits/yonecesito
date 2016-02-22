@@ -1,0 +1,13 @@
+<div class="scrollable">
+  <div class="scrollable-content">
+
+    <div class="section">
+      <h2>asdf</h2>
+      <hr>
+      <h1>Resultados {{app.resultados.length}}</h1>
+      <div  ng-repeat="necesidad in app.resultados" ng-click="app.resultados=undefined">
+          <necesidad-item necesidad="necesidad.original"></necesidad-item>
+      </div>
+    </div>
+  </div>
+</div>

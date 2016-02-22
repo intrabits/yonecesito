@@ -23,7 +23,9 @@ var sessionStore = new SessionStore(options);
 var passport = auth.passport;
 
 
-  var app = express();
+  // var app = express();
+
+module.exports = function (app) {
 
 // configure Express
   app.set('views', __dirname + './../views');
@@ -58,6 +60,4 @@ var passport = auth.passport;
 
   // console.log(app.settings.env);
 
-
-
-  module.exports.app = app;
+}
