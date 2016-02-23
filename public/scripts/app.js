@@ -22,7 +22,11 @@
     .run(['$rootScope', function($rootScope) {
 
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        $rootScope.title = current.$$route.title;
+
+        if (current.$$route.title) {
+          $rootScope.title = current.$$route.title;
+        }
+
       });
 
     }])
@@ -54,6 +58,7 @@
           controllerAs:'CategoriaCtrl'
         })
         .when('/perfil', {
+          title:'Configuración de la cuenta',
           templateUrl: 'scripts/users/config.html',
           reloadOnSearch: false,
           controller:'ConfigCtrl',

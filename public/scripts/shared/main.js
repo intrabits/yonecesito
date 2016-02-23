@@ -9,18 +9,29 @@
 
       var vm = this;
 
-
+      // caja de texto para hacer búsquedas que está en el menú superior
       vm.buscar = function (buscar) {
         if (buscar.length<1) {
           return ;
         }
         socket.emit('necesidades:buscar',buscar);
         socket.on('necesidades:resultado',function (data) {
-          vm.resultados = data;          
+          vm.resultados = data;
         });
 
       };
 
+      vm.login = function () {
+        var html = '<a href="/auth/facebook" class="btn btn-primary form-control">Facebook</a>';
+        html += '<a href="/auth/facebook" class="btn btn-info form-control">Twitter</a>'
+        html += '<a href="/auth/facebook" class="btn btn-danger form-control">Google</a>'
+        swal({
+          title:'Iniciar sesión',
+          text:html,
+          showCancelButton: true,
+          html:true
+        });
+      }
 
 
       User.me()
