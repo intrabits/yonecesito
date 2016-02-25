@@ -2,24 +2,28 @@
   'use strict';
   angular
     .module('app.necesidad.detalle',[])
-      .controller('NecesidadDetalleCtrl',['Necesidad','ngNotify','$routeParams','$window','Comentario','$scope','socket','$rootScope',function (Necesidad,ngNotify,$routeParams,$window,Comentario,$scope,socket,$rootScope) {
+      .controller('NecesidadDetalleCtrl',['Necesidad','ngNotify','$routeParams','$window','Comentario','$scope','socket','$rootScope','$location','$anchorScroll',function (Necesidad,ngNotify,$routeParams,$window,Comentario,$scope,socket,$rootScope,$location,$anchorScroll) {
 
         var vm = this;
         vm.necesidad = {};
         vm.Comentario = {};
 
 
-        if ($routeParams.id) {
-          socket.log('Viendo una necesidad');
-          Necesidad.show($routeParams.id)
-            .success(function (data) {
-              vm.necesidad = data;
-              $rootScope.title = data.titulo;
-            })
-            .error(function (err) {
-              ngNotify.set(err,'error');
-            });
-        }
+        socket.log('Viendo una necesidad');
+        Necesidad.show($routeParams.id)
+          .success(function (data) {
+            vm.necesidad = data;
+            $rootScope.title = data.titulo;
+            if ($routeParams.comentarioId) {
+              $location.hash('comentario-' + $routeParams.comentarioId);
+              $anchorScroll();
+              vm.comentarioId = $routeParams.comentarioId;
+            }
+          })
+          .error(function (err) {
+            ngNotify.set(err,'error');
+          });
+
 
         vm.save = function () {
           socket.log('editando una necesidad');
@@ -38,10 +42,11 @@
           socket.log('comentando una necesidad');
           Comentario.create(vm.ComentarioForm)
             .success(function (data) {
-              ngNotify.set(data,'success');
-              vm.Comentario.createdAt = new Date();
-              vm.necesidad.comentarios.push(vm.Comentario);
-              vm.Comentario = {};
+              ngNotify.set('Comentario agregado','success');
+              console.log(data)
+              vm.necesidad.comentarios.push(data);
+              vm.ComentarioForm = null
+              vm.ComentarioForm = {};
             })
             .error(function (err) {
               ngNotify.set(err,'error');
@@ -56,6 +61,21 @@
               .success(function (data) {
                 ngNotify.set(data,'success');
                 $window.location = '#/';
+              })
+              .error(function (err) {
+                ngNotify.set(err,'error');
+              });
+          }
+        };
+
+        vm.deleteComentario = function (id) {
+          var sure = confirm('Realmente deseas eliminar este comentario?');
+          if (sure) {
+            Comentario.delete(id)
+              .success(function (data) {
+                ngNotify.set(data,'success');
+                var comentDiv = document.getElementById('comentario-' + id);
+                angular.element(comentDiv).remove();
               })
               .error(function (err) {
                 ngNotify.set(err,'error');
@@ -78,17 +98,13 @@
         $scope.upload = function(files) {
           socket.log('agregando foto a una necesidad');
           var fd = new FormData();
-
           if (files[0]) {
             fd.append("file", files[0]);
-
             Necesidad.upload(fd,$routeParams.id)
               .success(function (data) {
                 ngNotify.set(data,'success');
-                console.log(data);
               })
               .error(function (err) {
-                console.log(err);
                 ngNotify.set(err,'error');
               });
           }

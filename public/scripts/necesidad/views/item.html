@@ -1,34 +1,5 @@
 <div class="panel panel-default necesidad">
 
-
-  <div class="panel-heading">
-    <div class="btn-group pull-right">
-      <a ui-turn-on='myDropdown{{necesidad.id}}' class='btn'>
-        <i class="fa fa-ellipsis-v"></i>
-      </a>
-      <ul
-        ui-state="myDropdown{{necesidad.id}}"
-
-        class="dropdown-menu"
-        ui-outer-click-if="Ui.turnOff('myDropdown' + necesidad.id)"
-        ui-outer-click-if="Ui.active('myDropdown' + necesidad.id)"
-        role="menu"
-        ui-show="myDropdown{{necesidad.id}}"
-        ui-turn-off="myDropdown{{necesidad.id}}">
-
-        <li><a href="#/usuario/{{::necesidad.userId}}">
-          <span ng-if="necesidad.user">Ver perfil de {{::necesidad.user.name}}</span>
-          <span ng-if="!necesidad.user">Ver perfil del usuario</span>
-
-        </a></li>
-        <li><a>Guardar en favoritos</a></li>
-        <li class="divider"></li>
-        <li><a>Reportar necesidad</a></li>
-      </ul>
-    </div>
-    <h3 class="panel-title">{{::necesidad.user.name}}</h3>
-  </div>
-  <div class="panel-body">
     <a ng-href="#/necesidad/{{::necesidad.id}}">
       <div class="row" ng-href="#/necesidad/{{::necesidad.id}}">
         <div class="col-xs-5 col-md-2">
@@ -36,14 +7,20 @@
             <img ng-src="{{::necesidad.thumb}}" width="100%"/>
           </div>
         </div>
-        <div class="col-xs-7 col-md-10">
+        <div class="col-xs-7 col-md-10" style="padding:5px;padding-left:40px">
+          <br>
           <h4>{{::necesidad.titulo}}</h4>
-          <p>
-            {{::necesidad.descripcion||'Sin descripción'}}
-          </p>
+          <p>{{::necesidad.descripcion||'Sin descripción'}}</p>
         </div>
       </div>
     </a>
-  </div>
+    <div class="panel-footer" style="height:40px">
+      <div class="btn-group pull-right" style="">
+        <a href="#/usuario/{{::necesidad.userId}}" class="">
+          <i class="fa fa-user"></i> <span ng-if="necesidad.user"> {{::necesidad.user.name}}</span>
+          <span ng-if="!necesidad.user">Ver perfil del usuario</span>
+        </a>
+      </div>
+    </div>
 
 </div>

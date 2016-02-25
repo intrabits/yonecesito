@@ -1,4 +1,9 @@
 # YO NECESITO
+## Reputación
+- Necesidad = 2
+- Comentario = 1
+- Comentario útil = 5
+
 ## Base de datos
 User   
 - tipo --persona o empresa

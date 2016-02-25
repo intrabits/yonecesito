@@ -18,5 +18,7 @@
   </div>
   <div class="panel-body">
     {{::comentario.texto}}
+    <br>
+    <a ng-if="externo" href="#/necesidad/{{::comentario.necesidadId}}">Ir a la necesidad</a>
   </div>
 </div>

@@ -11,13 +11,17 @@
 
       <div class="row">
         <div class="col-md-6">
+
           <div class="panel panel-default">
-            <img src="{{::ctrl.user.picture}}" class="image-full" />
-            <div class="panel-body">
+            <div class="panel-heading">
               <h1>{{::ctrl.user.name}} <small>{{ctrl.user.type|uppercase}}</small></h1>
               <p>
                 {{::ctrl.user.details}}
               </p>
+
+            </div>
+            <img src="{{::ctrl.user.picture}}" class="image-full" />
+            <div class="panel-body">
               <table class="table">
                 <tr>
                   <th>Sitio web</th>
@@ -25,26 +29,60 @@
                 </tr>
                 <tr ng-if="ctrl.user.type=='empresa'">
                   <th>Teléfono</th>
-                  <td>{{::ctrl.user.phone}}</td>
+                  <td>{{ctrl.user.phone?ctrl.user.phone:'Sin especificar'}}</td>
                 </tr>
                 <tr ng-if="ctrl.user.type=='empresa'">
                   <th>Dirección</th>
-                  <td>{{::ctrl.user.address}}</td>
+                  <td>{{ctrl.user.address?ctrl.user.address:'Sin especificar'}}</td>
                 </tr>
                 <tr>
-                  <th>Necesidades publicadas</th>
-                  <td>{{::ctrl.user.necesidades.length}}</td>
+                  <th>Usuario desde</th>
+                  <td>{{::ctrl.user.createdAt|date:'dd/MM/yyyy'}}</td>
                 </tr>
                 <tr>
-                  <th>Ofertas publicadas</th>
-                  <td>{{::ctrl.user.comentarios.length}}</td>
+                  <th>Reputación</th>
+                  <td>{{::ctrl.user.reputacion}}</td>
+                </tr>
+                <tr>
+                  <th>Popularidad</th>
+                  <td>{{::ctrl.user.visitas}} visitas a necesidades publicadas</td>
                 </tr>
 
               </table>
+
+              <div class="btn-group" style="width:100%">
+                <button type="button" class="btn btn-primary" style="width:33%"
+                  uib-tooltip="Necesidades que el usuario ha dado de alta">Necesidades <br>
+                  <span class="badge">{{::ctrl.user.necesidades.length}}</span></button>
+                <button type="button" class="btn btn-success" style="width:33%"
+                  uib-tooltip="Ofertas y comentarios que el usuario ha dejado para ofrecer la solución de una necesidad">Ofertas <br>
+                  <span class="badge">{{::ctrl.user.comentarios.length}}</span></button>
+                <button type="button" class="btn btn-danger" style="width:33%"
+                  uib-tooltip="Ofertas publicadas que han servido para cubrir una necesidad">Destacadas <br>
+                  <span class="badge">{{::ctrl.user.aceptadas.length}}</span></button>
+              </div>
             </div>
           </div>
 
         </div>
+
+        <!-- Derecha -->
+        <div class="col-md-6">
+
+          <div class="" ng-if="ctrl.user.necesidades.length>0">
+            <h3>Necesidades <small>{{ctrl.user.necesidades.length}} publicadas</small></h3>
+
+            <necesidad-item ng-repeat="necesidad in ctrl.user.necesidades" necesidad="necesidad"></necesidad-item>
+          </div>
+
+          <div class="" ng-if="ctrl.user.comentarios.length>0">
+            <h3>Ofertas <small>{{ctrl.user.comentarios.length}} publicadas</small></h3>
+            <comentario ng-repeat="comentario in ctrl.user.comentarios"
+              externo="true"
+              comentario="comentario"></comentario>
+          </div>
+        </div>
+
 
       </div>
 
@@ -59,56 +97,3 @@
 
   </div>
 </div>
-
-<style media="screen">
-
-</style>
-
-<!--
-<div class="card hovercard" ng-if="ctrl.user.picture">
-    <div class="card-background">
-        <img class="card-bkimg" alt="" src="{{::ctrl.user.picture}}">
-    </div>
-    <div class="useravatar">
-        <img alt="" src="{{::ctrl.user.picture}}">
-    </div>
-    <div class="card-info"> <span class="card-title">{{::ctrl.user.name}}</span>
-
-    </div>
-</div>
-<div class="panel panel400H section">
-  <ui-state id='activeTab' default='1'></ui-state>
-
-    <ul class="nav nav-tabs">
-      <li ui-class="{'active': activeTab == 1}" style="width:33%">
-        <a ui-set="{'activeTab': 1}">Información general</a>
-      </li>
-      <li ui-class="{'active': activeTab == 2}" style="width:33%">
-        <a ui-set="{'activeTab': 2}">Necesidades publicadas</a>
-      </li>
-      <li ui-class="{'active': activeTab == 3}" style="width:33%">
-        <a ui-set="{'activeTab': 3}">Comentarios</a>
-      </li>
-    </ul>
-
-    <div ui-if="activeTab == 1">
-      <br>
-
-    </div>
-
-    <div ui-if="activeTab == 2">
-      <div style="margin:20px">
-        <div  ng-repeat="necesidad in ctrl.user.necesidades">
-          <necesidad-item necesidad="necesidad"></necesidad-item>
-        </div>
-      </div>
-    </div>
-
-    <div ui-if="activeTab == 3">
-      <div style="margin:20px">
-        <div  ng-repeat="comentario in ctrl.user.comentarios">
-          <comentario comentario="comentario"></comentario>
-        </div>
-      </div>
-    </div>
-</div> -->

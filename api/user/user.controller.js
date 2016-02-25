@@ -86,7 +86,7 @@ exports.show = function (req, res, next) {
   User.findOne({
     where:{ id:req.params.id },
     raw:true,
-    attributes:['id','picture','name','surname','email','facebook','type','details','website','address','lastLogin']
+    attributes:['id','picture','name','surname','email','facebook','type','details','website','address','lastLogin','createdAt']
   })
     .then(function (profile) {
 
@@ -99,7 +99,7 @@ exports.show = function (req, res, next) {
           raw:true
         }).then(function (necesidades) {
           profile.necesidades = necesidades;
-          console.log(`Necesidades ${necesidades.length}`);
+          // console.log(`Necesidades ${necesidades.length}`);
           return profile;
         });
 
@@ -113,7 +113,7 @@ exports.show = function (req, res, next) {
           raw:true
         }).then(function (data) {
           profile.comentarios = data;
-          console.log(`Comentarios ${data.length}`);
+          // console.log(`Comentarios ${data.length}`);
           return profile;
         });
 

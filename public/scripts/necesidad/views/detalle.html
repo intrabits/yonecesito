@@ -32,15 +32,31 @@
                   ng-if="app.user.id == DetalleCtrl.necesidad.userId"
                   class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Editar necesidad</a>
                 <a ng-href="#/usuario/{{::DetalleCtrl.necesidad.user.id}}"
+                  uib-tooltip="Ver perfil del usuario"
                   class="btn btn-default  btn-sm">
-                   Ver perfil de {{::DetalleCtrl.necesidad.user.name}}
+                   <i class="fa fa-user"></i> {{::DetalleCtrl.necesidad.user.name}}
                 </a>
                 <a
                   ng-href="#/categoria/{{DetalleCtrl.necesidad.categoria.clave}}"
+                  uib-tooltip="Ver la categoría"
                   class="btn btn-default btn-sm">
-                   Categoría: {{::DetalleCtrl.necesidad.categoria.titulo}}
+                   <i class="fa fa-tags"></i> {{::DetalleCtrl.necesidad.categoria.titulo}}
                 </a>
+                <span class="btn btn-default btn-sm" uib-tooltip="Fecha de la publicación">
+                  <i class="fa fa-calendar"></i>
+                  {{::DetalleCtrl.necesidad.createdAt|date:'dd/MM/yyyy'}}
+                </span>
+                <span class="btn btn-default btn-sm" uib-tooltip="Visitas a esta necesidad">
+                  <i class="fa fa-eye"></i>
+                  {{::DetalleCtrl.necesidad.visitas}}
+                </span>
+                <span class="btn btn-default btn-sm" uib-tooltip="Comentarios">
+                  <i class="fa fa-comment-o"></i>
+                  {{::DetalleCtrl.necesidad.comentarios.length}}
+                </span>
               </div>
+
+              <br>
             </p>
 
             <hr>
@@ -48,13 +64,9 @@
             <div class="row">
 
               <div class="col-sm-12">
-                <p ng-if="DetalleCtrl.necesidad.createdAt">
-                  <strong>Fecha:</strong> {{::DetalleCtrl.necesidad.createdAt|date:'dd/MM/yyyy'}} <br>
-                  <strong>Visitas:</strong> {{::DetalleCtrl.necesidad.visitas}}
-                </p>
+                <h4>Información adicional <small></small></h4>
                 <p>
-                  <strong>Información adicional:</strong>
-                  {{DetalleCtrl.necesidad.descripcion}}
+                  {{DetalleCtrl.necesidad.descripcion?DetalleCtrl.necesidad.descripcion:'No se agregó descripción a esta necesidad, si requieres más información pregúntala en los comentarios.'}}
                 </p>
               </div>
 
@@ -94,26 +106,32 @@
     </div>
 
     <!-- Comentarios -->
-    <div class="panel panel-default" ng-repeat="comentario in DetalleCtrl.necesidad.comentarios">
+    <div class="panel panel-default" ng-repeat="comentario in DetalleCtrl.necesidad.comentarios" id="comentario-{{comentario.id}}">
       <div class="panel-heading" style="min-height:50px">
         <div class="pull-right">
           <a href="javascript:;"
             ng-if="DetalleCtrl.necesidad.userId==app.user.id"
             ng-hide="comentario.util"
-            ng-click="DetalleCtrl.util(comentario)" class='btn btn-primary'>
+            ng-click="DetalleCtrl.util(comentario)" class='btn btn-primary btn-sm'>
             !Esto es lo que necesito!
           </a>
-          <a href="#/usuario/{{::comentario.userId}}" class='btn btn-default'>
+          <a href="#/usuario/{{::comentario.userId}}" class='btn btn-default btn-sm'>
             Ver perfil
+          </a>
+          <a class="btn btn-default btn-sm"
+            ng-if="app.user.id==comentario.userId"
+            href="javascript:;"
+            ng-click="DetalleCtrl.deleteComentario(comentario.id)">
+            <i class="fa fa-trash-o"></i>
           </a>
         </div>
         <h3 class="panel-title">
-          <span ng-show="comentario.util" class="badge necesidad-util">
+          <span ng-show="comentario.util" class="btn btn-success btn-sm">
             <i class="fa fa-star"></i> Respuesta útil
           </span>
           {{::comentario.createdAt|date:'dd/MM/yyyy'}}</h3>
       </div>
-      <div class="panel-body">
+      <div class="panel-body {{DetalleCtrl.comentarioId==comentario.id?'comentario-destacado':''}}">
         {{::comentario.texto}}
       </div>
     </div>

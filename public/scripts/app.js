@@ -23,9 +23,9 @@
 
       $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
 
-        if (current.$$route.title) {
-          $rootScope.title = current.$$route.title;
-        }
+        // if (current.$$route && current) {
+        //   $rootScope.title = current.$$route.title;
+        // }
 
       });
 
@@ -42,6 +42,11 @@
           template: '<busqueda></busqueda>',
         })
         .when('/necesidad/:id', {
+          templateUrl: 'scripts/necesidad/views/detalle.html',
+          controller:'NecesidadDetalleCtrl',
+          controllerAs:'DetalleCtrl'
+        })
+        .when('/necesidad/:id/comentario/:comentarioId', {
           templateUrl: 'scripts/necesidad/views/detalle.html',
           controller:'NecesidadDetalleCtrl',
           controllerAs:'DetalleCtrl'

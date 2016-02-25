@@ -1,3 +1,5 @@
+'use strict';
+
 var Comentario = require('./comentario.model');
 var Necesidad = require('./../necesidad.model');
 var db = require('./../../../config').sequelize;
@@ -23,6 +25,25 @@ exports.all = function (req,res) {
 
 }
 
+exports.necesidad = function (req,res) {
+  // ID de la necesidad
+  var id = req.params.id;
+
+  db.query(`SELECT comentario.*,user.name,necesidad.titulo FROM comentario
+    INNER JOIN user on user.id = comentario.userId
+    WHERE necesidadId = ${id}
+    ORDER BY createdAt DESC`)
+    .then(function (data) {
+      data = data[0];
+      res.json(data);
+    })
+    .catch(function (err) {
+      console.error(err)
+      res.status(500).send('Error al cargar los comentarios');
+    });
+
+};
+
 exports.create = function (req,res) {
   console.log(req.user.name,' está dejando un comentario');
   var data = {
@@ -33,7 +54,8 @@ exports.create = function (req,res) {
 
   Comentario.create(data)
     .then(function (data) {
-      res.send('Comentario agregado');
+      // res.send('Comentario agregado');
+      res.json(data);
     })
     .catch(function (err) {
       console.error(err);

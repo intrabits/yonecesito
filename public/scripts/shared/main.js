@@ -28,7 +28,6 @@
         swal({
           title:'Iniciar sesión',
           text:html,
-          showCancelButton: true,
           html:true
         });
       }
@@ -39,13 +38,27 @@
           vm.user = data;
           if (data) {
             User.current = data;
+          } else {
+            return ;
           }
-          console.log(data)
 
-          User.show(data.id)
+          return User.show(data.id)
             .success(function (data) {
               vm.user.necesidades = data.necesidades;
-            })
+              socket.emit('necesidades:notificaciones',User.current);
+              socket.on('necesidades:notificaciones',function (data) {
+                vm.user.unread = data;
+                console.log('Notiicaciones encontradas: ',data.length)
+              });
+
+              return data;
+
+            });
+
+        })
+        .success(function (data) {
+          console.log('tres')
+          console.log(data);
         })
         .error(function (err) {
           console.log(err);

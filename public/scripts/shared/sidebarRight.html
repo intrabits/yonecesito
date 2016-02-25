@@ -3,16 +3,23 @@
       <div class="list-group" ui-toggle="uiSidebarRight">
 
         <a href="#/usuario/{{app.user.id}}" class="list-group-item">
-          <img src="{{app.user.picture}}" alt="" with="100%"></a>
+          <img src="{{app.user.picture}}" alt="" with="100px">
+        </a>
 
         <a class="list-group-item" href="#/perfil" ng-if="app.user.id">
-           Configuración </a>
-        <a class="list-group-item" href="#/password">
-           Cambiar contraseña</a>
+          <i class="fa fa-cogs"></i>  Configuración </a>
+        <!-- <a class="list-group-item" href="#/password">
+           Cambiar contraseña</a> -->
         <a class="list-group-item" href="/logout" ng-if="app.user.id">
-           Cerrar sesión </a>
+          <i class="fa fa-sign-out"></i>  Cerrar sesión </a>
 
       </div>
+
+      <h3 align="center"> Comentarios sin leer</h3>
+      <ul class="list-group">
+        <a ng-repeat="comentario in app.user.unread" class="list-group-item" href="#/necesidad/{{comentario.id}}/comentario/{{comentario.id}}">
+          <i class="fa fa-chevron-right"></i> {{comentario.texto}}</a>
+      </ul>
 
       <h3 align="center">Mis necesidades</h3>
 
