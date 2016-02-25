@@ -90,10 +90,9 @@
 
 
         <div class="btn-group pull-right" ui-yield-to="navbarAction" ng-if="app.user.id">
-          <a  class="btn" ui-toggle="uiSidebarRight">{{app.user.name}}</a>
-
-          <notificaciones></notificaciones>          
-
+          <a  class="btn" ui-toggle="uiSidebarRight">
+            {{app.user.name}} <span class="badge" ng-if="app.user.unread.length>0"> {{app.user.unread.length}}</span>
+          </a>
         </div>
         <div class="btn-group pull-right" ui-yield-to="navbarAction" ng-if="!app.user.id">
           <a class="btn" ng-click="app.login()">

@@ -18,7 +18,7 @@
 
       <h3 align="center"  ng-if="app.user.unread.length>0"> Comentarios sin leer</h3>
       <ul class="list-group">
-        <a ng-repeat="comentario in app.user.unread" class="list-group-item" href="#/necesidad/{{comentario.id}}/comentario/{{comentario.id}}">
+        <a ng-repeat="comentario in app.user.unread" class="list-group-item" href="#/necesidad/{{comentario.necesidadId}}/comentario/{{comentario.id}}">
           <i class="fa fa-chevron-right"></i> {{comentario.texto}}</a>
       </ul>
 

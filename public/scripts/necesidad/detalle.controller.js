@@ -18,7 +18,14 @@
               $location.hash('comentario-' + $routeParams.comentarioId);
               $anchorScroll();
               vm.comentarioId = $routeParams.comentarioId;
+
+              // marcar el comentario como leído
+              return Comentario.show($routeParams.comentarioId);
             }
+          })
+          .success(function (com) {
+            console.log('coment')
+            console.log(com)
           })
           .error(function (err) {
             ngNotify.set(err,'error');

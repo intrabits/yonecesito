@@ -118,6 +118,23 @@ exports.delete = function (req,res) {
     });
 };
 
+exports.show = function (req,res) {
+
+  Comentario.findById(req.params.id)
+    .then(function (data) {
+      if (req.user && req.user.id && req.user.id === data.userId) {
+        data.visto = true;
+        data.save();
+      }
+      res.json(data);
+    })
+    .catch(function (err) {
+      console.error(err)
+      res.status(500).send('Error al actualizar el comentario');
+    });
+    
+};
+
 exports.update = function (req,res) {
 
   console.log('Actualizando comentario')

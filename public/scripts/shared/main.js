@@ -42,7 +42,7 @@
             return ;
           }
 
-          return User.show(data.id)
+          User.show(data.id)
             .success(function (data) {
               vm.user.necesidades = data.necesidades;
               socket.emit('necesidades:notificaciones',User.current);
@@ -50,15 +50,12 @@
                 vm.user.unread = data;
                 console.log('Notiicaciones encontradas: ',data.length)
               });
-
-              return data;
-
             });
 
-        })
-        .success(function (data) {
-          console.log('tres')
-          console.log(data);
+          setInterval(function () {
+            socket.emit('necesidades:notificaciones',User.current);
+          },5000);
+
         })
         .error(function (err) {
           console.log(err);

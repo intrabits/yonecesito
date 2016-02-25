@@ -51,7 +51,8 @@ exports.register = function(socket) {
           where:{
             necesidadId:{
               $in:necesidadesList
-            }
+            },
+            visto:false
           }
         });
 

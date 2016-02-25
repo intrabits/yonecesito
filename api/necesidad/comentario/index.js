@@ -7,6 +7,9 @@ var router = express.Router();
 // Cargar todos los comentarios
 router.get('/',ComentarioCtrl.all);
 
+// Leer un comentario
+router.get('/:id',auth.isLogged,ComentarioCtrl.show);
+
 // Toggle entre util e inútil
 router.patch('/:id',auth.isLogged,ComentarioCtrl.util);
 
