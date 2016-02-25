@@ -44,8 +44,15 @@ passport.use(new LocalStrategy({
     process.nextTick( async function () {
       console.log(user_email);
       console.log(user_password);
-
-      User.findOne({where:{email:user_email}})
+      var where = {
+        where:{
+          email:user_email,
+          type:{
+            $not:'banned'
+          }
+        }
+      };
+      User.findOne(where)
         .then(function (user) {
 
           if (user) {
@@ -101,6 +108,9 @@ passport.use(new FacebookStrategy({
         }
 
         let user = await User.findOne({where:{
+          type:{
+            $not:'banned'
+          },
           $or:{
             email:userEmail,
             facebook:profile.id
@@ -147,9 +157,11 @@ passport.use(new TwitterStrategy({
     console.log(profile);
     var where = {
       where: {
-        twitter:profile.id
-      },
-      attributes:{}
+        twitter:profile.id,
+        type:{
+          $not:'banned'
+        }
+      }
     }
     User.findOne(where)
       .then(function (data) {
@@ -185,9 +197,11 @@ passport.use(new GoogleStrategy({
     console.log(profile);
     var where = {
       where: {
-        google:profile.id
-      },
-      attributes:{}
+        google:profile.id,
+        type:{
+          $not:'banned'
+        }
+      }
     }
     User.findOne(where)
       .then(function (data) {

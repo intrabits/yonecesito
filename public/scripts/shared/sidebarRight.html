@@ -3,7 +3,8 @@
       <div class="list-group" ui-toggle="uiSidebarRight">
 
         <a href="#/usuario/{{app.user.id}}" class="list-group-item">
-          <img src="{{app.user.picture}}" alt="" with="100px">
+          <img ng-if="app.user.picture" src="{{app.user.picture}}" alt="" with="100px">
+          <img ng-if="!app.user.picture" src="images/avatar.gif" alt="" with="100px">
         </a>
 
         <a class="list-group-item" href="#/perfil" ng-if="app.user.id">
@@ -15,13 +16,13 @@
 
       </div>
 
-      <h3 align="center"> Comentarios sin leer</h3>
+      <h3 align="center"  ng-if="app.user.unread.length>0"> Comentarios sin leer</h3>
       <ul class="list-group">
         <a ng-repeat="comentario in app.user.unread" class="list-group-item" href="#/necesidad/{{comentario.id}}/comentario/{{comentario.id}}">
           <i class="fa fa-chevron-right"></i> {{comentario.texto}}</a>
       </ul>
 
-      <h3 align="center">Mis necesidades</h3>
+      <h3 align="center" ng-if="app.user.necesidades.length>0">Mis necesidades</h3>
 
       <ul class="list-group">
         <a ng-repeat="n in app.user.necesidades" class="list-group-item" href="#/necesidad/{{n.id}}">

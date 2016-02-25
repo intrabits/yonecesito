@@ -34,6 +34,9 @@
           show:function (id) {
             return $http.get('/api/users/' + id);
           },
+          ban:function (id) {
+            return $http.delete('/api/users/' + id);
+          },
           all:function () {
             return $http.get('api/admin/users');
           }

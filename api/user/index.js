@@ -18,6 +18,9 @@ router.post('/upload', auth.isLogged, controller.upload);
 // Cargar detalles de un usuario
 router.get('/:id', controller.show);
 
+// Bloquear acceso a un usuario
+router.delete('/:id', auth.isAdmin, controller.ban);
+
 
 // router.delete('/:user_id', controller.destroy);
 

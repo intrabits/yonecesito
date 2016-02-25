@@ -22,5 +22,27 @@
             ngNotify.set(err,'error');
           });
 
+
+        vm.ban = function (user) {
+
+          var palabra = user.type==='banned'?'permitir':'bloquear';
+
+          var sure = confirm('Realmente quieres ' + palabra + ' el acceso a ' + user.name + '?');
+          if (sure) {
+            User.ban(user.id)
+            .success(function (data) {
+              if (user.type === 'banned') {
+                user.type = 'usuario';
+              } else {
+                user.type = 'banned';
+              }
+              ngNotify.set(data,'success');
+            })
+            .error(function (err) {
+              ngNotify.set(err,'error');
+            });
+          }
+        };
+
       }]);
 })();

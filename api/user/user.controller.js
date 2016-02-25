@@ -218,13 +218,6 @@ exports.changePassword = function(req, res, next) {
  */
 exports.me = function(req, res, next) {
 
-  // var profile = {
-  //   id:req.user.id,
-  //   name : req.user.name,
-  //   surname : req.user.surname,
-  //   email: req.user.email
-  // };
-
   User.findOne({
     where:{ id:req.user.id },
     attributes:['id','name','surname','email','picture','facebook','type','details','website','address','lastLogin']
@@ -266,4 +259,22 @@ exports.subscribe = function (req,res) {
   console.log(`${req.user.email} se suscribió a `.blue);
   console.log(req.body);
   res.send('Suscrito correctamente')
+}
+
+// bloquear el acceso a un usuario
+exports.ban = function (req,res) {
+  User.findById(req.params.id)
+    .then(function (data) {
+      if (data.type === 'banned') {
+        data.type === 'usuario';
+      } else {
+        data.type = 'banned';        
+      }
+      return data.save();
+    })
+    .then(function (data) {
+      res.send('Usuario bloqueado correctamente');
+    })
+    .catch(function (err) {
+    });
 }

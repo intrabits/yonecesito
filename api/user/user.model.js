@@ -24,7 +24,7 @@ var User = sequelize.define('user', {
   google:{
     type: Sequelize.STRING(40)
   },
-  // usuario, empresa
+  // usuario, empresa o banned = 'Ya no puede entrar por bitch'
   type:{
     type: Sequelize.STRING(20)
   },

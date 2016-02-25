@@ -22,18 +22,18 @@
             </tr>
           </head>
           <tbody>
-            <tr ng-repeat="user in ctrl.users|filter:searchUser">
+            <tr ng-repeat="user in ctrl.users|filter:searchUser" class="{{user.type=='banned'?'danger':''}}">
               <td><a href="#/usuario/{{::user.id}}">{{::user.name}}</a></td>
               <td>{{::user.email}}</td>
-              <td>{{::user.type}}</td>
+              <td>{{user.type}}</td>
               <td>{{::user.details}}</td>
               <td>
                 <a href="#/usuario/{{::user.id}}" class="btn btn-default">
                   <i class="fa fa-eye"></i>
                 </a>
-                <!-- <button class="btn btn-default">
+                <button class="btn btn-default" ng-click="ctrl.ban(user)">
                   <i class="fa fa-trash-o"></i>
-                </button> -->
+                </button>
               </td>
             </tr>
           </tbody>

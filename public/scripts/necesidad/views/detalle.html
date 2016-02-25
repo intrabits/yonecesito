@@ -61,16 +61,10 @@
 
             <hr>
 
-            <div class="row">
-
-              <div class="col-sm-12">
-                <h4>Información adicional <small></small></h4>
-                <p>
-                  {{DetalleCtrl.necesidad.descripcion?DetalleCtrl.necesidad.descripcion:'No se agregó descripción a esta necesidad, si requieres más información pregúntala en los comentarios.'}}
-                </p>
-              </div>
-
-            </div>
+            <h4>Información adicional</h4>
+            <p>
+              {{DetalleCtrl.necesidad.descripcion?DetalleCtrl.necesidad.descripcion:'No se agregó descripción a esta necesidad, si requieres más información pregúntala en los comentarios.'}}
+            </p>
 
 
           </div>
@@ -112,13 +106,13 @@
           <a href="javascript:;"
             ng-if="DetalleCtrl.necesidad.userId==app.user.id"
             ng-hide="comentario.util"
-            ng-click="DetalleCtrl.util(comentario)" class='btn btn-primary btn-sm'>
+            ng-click="DetalleCtrl.util(comentario)" class='btn btn-primary btn-xs'>
             !Esto es lo que necesito!
           </a>
-          <a href="#/usuario/{{::comentario.userId}}" class='btn btn-default btn-sm'>
+          <a href="#/usuario/{{::comentario.userId}}" class='btn btn-default btn-xs'>
             Ver perfil
           </a>
-          <a class="btn btn-default btn-sm"
+          <a class="btn btn-default btn-xs"
             ng-if="app.user.id==comentario.userId"
             href="javascript:;"
             ng-click="DetalleCtrl.deleteComentario(comentario.id)">
@@ -126,7 +120,7 @@
           </a>
         </div>
         <h3 class="panel-title">
-          <span ng-show="comentario.util" class="btn btn-success btn-sm">
+          <span ng-show="comentario.util" class="btn btn-success btn-xs">
             <i class="fa fa-star"></i> Respuesta útil
           </span>
           {{::comentario.createdAt|date:'dd/MM/yyyy'}}</h3>
